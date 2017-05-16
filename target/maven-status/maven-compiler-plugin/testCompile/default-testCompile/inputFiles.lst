@@ -1,0 +1,10 @@
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\common\CommonFileParserSuiteClass.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\common\FileProcessorsFactoryTest.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\common\reader\FinancialApplicationReaderTest.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\common\writer\FinancialApplicationWriterTest.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\tx\TxFileSuiteClass.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\tx\writer\TXSummaryFileWriterTest.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\FileParserSuiteClass.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\tx\common\TXCustomerTransactionTest.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\tx\processor\TXProcessorTest.java
+G:\IT\Workspace\FinancialApp\src\test\java\financial\file\parser\FileHandlerTest.java

@@ -1,0 +1,40 @@
+File has been successfully processed.
+
+Processing date: 2017-05-16
+
+Customer number: 2211111111
+Total count of the transactions: 2
+Total count of debit transactions: 1
+Total count of credit transactions: 1
+Total amount of the transactions: 0.00
+Total amount of debit transactions: 120.75
+Total amount of credit transactions: -120.75
+Total amount of CASH transactions: -120.75
+Total amount of CREDIT_CARD transactions: 120.75
+
+Customer number: 1111111111
+Total count of the transactions: 6
+Total count of debit transactions: 3
+Total count of credit transactions: 3
+Total amount of the transactions: 71.00
+Total amount of debit transactions: 331.65
+Total amount of credit transactions: -260.65
+Total amount of CASH transactions: -126.55
+Total amount of CREDIT_CARD transactions: -11.55
+Total amount of CHEQUE transactions: 0.00
+Total amount of PHONE transactions: 122.55
+Total amount of OTHER transactions: 86.55
+
+Customer number: 2111111111
+Total count of the transactions: 9
+Total count of debit transactions: 8
+Total count of credit transactions: 1
+Total amount of the transactions: -300.00
+Total amount of debit transactions: 800.00
+Total amount of credit transactions: -1100.00
+Total amount of CASH transactions: 300.00
+Total amount of CREDIT_CARD transactions: -1000.00
+Total amount of CHEQUE transactions: 200.00
+Total amount of PHONE transactions: 100.00
+Total amount of OTHER transactions: 100.00
+

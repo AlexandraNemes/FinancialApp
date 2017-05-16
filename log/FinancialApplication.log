@@ -1,0 +1,763 @@
+18:34:25,988 INFO   Started reading file reader
+18:34:25,995 WARN   The file is a folder. Will not process the folder.
+18:34:26,002 INFO   Started reading file TestFil.tx
+18:34:26,006 WARN   File does not exist.
+18:34:26,007 INFO   Started reading file TestFile.tx
+18:34:26,009 INFO   Finished reading file TestFile.tx
+18:34:26,021 ERROR  File  could not be created.
+18:34:26,040 INFO   Started writing data: 0 lines, in src\test\resources\writer\testFile.txt
+18:34:26,041 INFO   Finished writing data: 0 lines, in src\test\resources\writer\testFile.txt
+
+18:34:26,041 INFO   Started reading file testFile.txt
+18:34:26,042 INFO   Finished reading file testFile.txt
+18:34:26,044 INFO   Started writing data: 7 lines, in src\test\resources\writer\testFile.txt
+18:34:26,045 INFO   Finished writing data: 7 lines, in src\test\resources\writer\testFile.txt
+
+18:34:26,045 INFO   Started reading file testFile.txt
+18:34:26,046 INFO   Finished reading file testFile.txt
+18:34:26,108 INFO   Searching folders in input folder inputFolder
+18:34:26,108 INFO   Found folder: TX
+18:34:26,115 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@52d455b8
+18:34:26,120 INFO   Found file:SampleFile.tx
+18:34:26,120 INFO   Started reading file SampleFile.tx
+18:34:26,121 INFO   Finished reading file SampleFile.tx
+18:34:26,121 INFO   Started processing 33 elements
+18:34:26,123 DEBUG  Processing line: 15
+18:34:26,159 DEBUG  Processing line: 16
+18:34:26,159 DEBUG  Processing line: 17
+18:34:26,159 DEBUG  Processing line: 18
+18:34:26,159 DEBUG  Processing line: 19
+18:34:26,159 DEBUG  Processing line: 20
+18:34:26,160 DEBUG  Processing line: 21
+18:34:26,160 DEBUG  Processing line: 24
+18:34:26,160 DEBUG  Processing line: 25
+18:34:26,160 DEBUG  Processing line: 26
+18:34:26,160 DEBUG  Processing line: 27
+18:34:26,160 DEBUG  Processing line: 28
+18:34:26,161 DEBUG  Processing line: 29
+18:34:26,161 DEBUG  Processing line: 30
+18:34:26,161 DEBUG  Processing line: 31
+18:34:26,161 DEBUG  Processing line: 32
+18:34:26,161 DEBUG  Processing line: 33
+18:34:26,161 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+18:34:26,163 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_06-34-26_SampleFile.tx) to folder: test\outputFolder\TX\ProcessedFiles\OriginalFiles
+18:34:26,164 INFO   Started creating the content to be written to the output file.
+18:34:26,164 DEBUG  Found 0 validation issues.
+18:34:26,165 DEBUG  Found 3 customers with valid transactions.
+18:34:26,166 INFO   Finished creating the content for the output file.
+18:34:26,167 INFO   Started writing data: 40 lines, in test\outputFolder\TX\ProcessedFiles\2017-05-16_06-34-26_SampleFile.tx
+18:34:26,168 INFO   Finished writing data: 40 lines, in test\outputFolder\TX\ProcessedFiles\2017-05-16_06-34-26_SampleFile.tx
+
+18:34:26,168 INFO   Finished with the folder: TX
+18:34:26,169 INFO   Started reading file 2017-05-16_06-34-26_SampleFile.tx
+18:34:26,170 INFO   Finished reading file 2017-05-16_06-34-26_SampleFile.tx
+18:36:25,060 INFO   Started reading file reader
+18:36:25,065 WARN   The file is a folder. Will not process the folder.
+18:36:25,069 INFO   Started reading file TestFil.tx
+18:36:25,070 WARN   File does not exist.
+18:36:25,070 INFO   Started reading file TestFile.tx
+18:36:25,072 INFO   Finished reading file TestFile.tx
+18:36:25,080 ERROR  File  could not be created.
+18:36:25,083 INFO   Started writing data: 0 lines, in src\test\resources\writer\testFile.txt
+18:36:25,084 INFO   Finished writing data: 0 lines, in src\test\resources\writer\testFile.txt
+
+18:36:25,084 INFO   Started reading file testFile.txt
+18:36:25,084 INFO   Finished reading file testFile.txt
+18:36:25,089 INFO   Started writing data: 7 lines, in src\test\resources\writer\testFile.txt
+18:36:25,090 INFO   Finished writing data: 7 lines, in src\test\resources\writer\testFile.txt
+
+18:36:25,090 INFO   Started reading file testFile.txt
+18:36:25,091 INFO   Finished reading file testFile.txt
+18:36:25,122 INFO   Searching folders in input folder inputFolder
+18:36:25,122 INFO   Found folder: TX
+18:36:25,128 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@52d455b8
+18:36:25,130 INFO   Found file:SampleFile.tx
+18:36:25,130 INFO   Started reading file SampleFile.tx
+18:36:25,131 INFO   Finished reading file SampleFile.tx
+18:36:25,131 INFO   Started processing 33 elements
+18:36:25,133 DEBUG  Processing line: 15
+18:36:25,139 DEBUG  Processing line: 16
+18:36:25,140 DEBUG  Processing line: 17
+18:36:25,140 DEBUG  Processing line: 18
+18:36:25,140 DEBUG  Processing line: 19
+18:36:25,140 DEBUG  Processing line: 20
+18:36:25,141 DEBUG  Processing line: 21
+18:36:25,141 DEBUG  Processing line: 24
+18:36:25,141 DEBUG  Processing line: 25
+18:36:25,141 DEBUG  Processing line: 26
+18:36:25,142 DEBUG  Processing line: 27
+18:36:25,142 DEBUG  Processing line: 28
+18:36:25,142 DEBUG  Processing line: 29
+18:36:25,142 DEBUG  Processing line: 30
+18:36:25,142 DEBUG  Processing line: 31
+18:36:25,143 DEBUG  Processing line: 32
+18:36:25,143 DEBUG  Processing line: 33
+18:36:25,143 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+18:36:25,145 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_06-36-25_SampleFile.tx) to folder: test\outputFolder\TX\ProcessedFiles\OriginalFiles
+18:36:25,146 INFO   Started creating the content to be written to the output file.
+18:36:25,147 DEBUG  Found 0 validation issues.
+18:36:25,149 DEBUG  Found 3 customers with valid transactions.
+18:36:25,151 INFO   Finished creating the content for the output file.
+18:36:25,151 INFO   Started writing data: 40 lines, in test\outputFolder\TX\ProcessedFiles\2017-05-16_06-36-25_SampleFile.tx
+18:36:25,152 INFO   Finished writing data: 40 lines, in test\outputFolder\TX\ProcessedFiles\2017-05-16_06-36-25_SampleFile.tx
+
+18:36:25,152 INFO   Finished with the folder: TX
+18:36:25,153 INFO   Started reading file 2017-05-16_06-36-25_SampleFile.tx
+18:36:25,154 INFO   Finished reading file 2017-05-16_06-36-25_SampleFile.tx
+18:37:54,538 INFO   Started reading file reader
+18:37:54,542 WARN   The file is a folder. Will not process the folder.
+18:37:54,546 INFO   Started reading file TestFil.tx
+18:37:54,547 WARN   File does not exist.
+18:37:54,547 INFO   Started reading file TestFile.tx
+18:37:54,548 INFO   Finished reading file TestFile.tx
+18:37:54,555 ERROR  File  could not be created.
+18:37:54,558 INFO   Started writing data: 0 lines, in src\test\resources\writer\testFile.txt
+18:37:54,559 INFO   Finished writing data: 0 lines, in src\test\resources\writer\testFile.txt
+
+18:37:54,559 INFO   Started reading file testFile.txt
+18:37:54,560 INFO   Finished reading file testFile.txt
+18:37:54,564 INFO   Started writing data: 7 lines, in src\test\resources\writer\testFile.txt
+18:37:54,565 INFO   Finished writing data: 7 lines, in src\test\resources\writer\testFile.txt
+
+18:37:54,565 INFO   Started reading file testFile.txt
+18:37:54,566 INFO   Finished reading file testFile.txt
+18:48:35,758 INFO   Searching folders in input folder inputFolder
+18:48:35,761 INFO   Found folder: TX
+18:48:35,766 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@2401f4c3
+18:48:35,780 INFO   Found file:SampleFile.tx
+18:48:35,780 INFO   Started reading file SampleFile.tx
+18:48:35,782 INFO   Finished reading file SampleFile.tx
+18:48:35,782 INFO   Started processing 33 elements
+18:48:35,785 DEBUG  Processing line: 15
+18:48:35,793 DEBUG  Processing line: 16
+18:48:35,793 DEBUG  Processing line: 17
+18:48:35,793 DEBUG  Processing line: 18
+18:48:35,793 DEBUG  Processing line: 19
+18:48:35,794 DEBUG  Processing line: 20
+18:48:35,794 DEBUG  Processing line: 21
+18:48:35,794 DEBUG  Processing line: 24
+18:48:35,794 DEBUG  Processing line: 25
+18:48:35,794 DEBUG  Processing line: 26
+18:48:35,794 DEBUG  Processing line: 27
+18:48:35,795 DEBUG  Processing line: 28
+18:48:35,795 DEBUG  Processing line: 29
+18:48:35,795 DEBUG  Processing line: 30
+18:48:35,795 DEBUG  Processing line: 31
+18:48:35,795 DEBUG  Processing line: 32
+18:48:35,795 DEBUG  Processing line: 33
+18:48:35,796 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+18:48:35,797 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_06-48-35_SampleFile.tx) to folder: test\outputFolder\TX\ProcessedFiles\OriginalFiles
+18:48:35,798 INFO   Started creating the content to be written to the output file.
+18:48:35,798 DEBUG  Found 0 validation issues.
+18:48:35,799 DEBUG  Found 3 customers with valid transactions.
+18:48:35,800 INFO   Finished creating the content for the output file.
+18:48:35,802 INFO   Started writing data: 40 lines, in test\outputFolder\TX\ProcessedFiles\2017-05-16_06-48-35_SampleFile.tx
+18:48:35,802 INFO   Finished writing data: 40 lines, in test\outputFolder\TX\ProcessedFiles\2017-05-16_06-48-35_SampleFile.tx
+
+18:48:35,803 INFO   Finished with the folder: TX
+18:48:35,803 INFO   Started reading file 2017-05-16_06-48-35_SampleFile.tx
+18:48:35,804 INFO   Finished reading file 2017-05-16_06-48-35_SampleFile.tx
+18:49:39,695 INFO   Searching folders in input folder inputFolder
+18:49:39,697 INFO   Found folder: TX
+18:49:39,703 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@530612ba
+18:49:39,704 INFO   Found file:SampleFile.tx
+18:49:39,704 INFO   Started reading file SampleFile.tx
+18:49:39,706 INFO   Finished reading file SampleFile.tx
+18:49:39,706 INFO   Started processing 33 elements
+18:49:39,708 DEBUG  Processing line: 15
+18:49:39,712 DEBUG  Processing line: 16
+18:49:39,713 DEBUG  Processing line: 17
+18:49:39,713 DEBUG  Processing line: 18
+18:49:39,713 DEBUG  Processing line: 19
+18:49:39,713 DEBUG  Processing line: 20
+18:49:39,713 DEBUG  Processing line: 21
+18:49:39,713 DEBUG  Processing line: 24
+18:49:39,714 DEBUG  Processing line: 25
+18:49:39,714 DEBUG  Processing line: 26
+18:49:39,714 DEBUG  Processing line: 27
+18:49:39,714 DEBUG  Processing line: 28
+18:49:39,714 DEBUG  Processing line: 29
+18:49:39,715 DEBUG  Processing line: 30
+18:49:39,715 DEBUG  Processing line: 31
+18:49:39,715 DEBUG  Processing line: 32
+18:49:39,716 DEBUG  Processing line: 33
+18:49:39,716 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+18:49:39,718 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_06-49-39_SampleFile.tx) to folder: test\outputFolder\TX\ProcessedFiles\OriginalFiles
+18:49:39,718 INFO   Started creating the content to be written to the output file.
+18:49:39,718 DEBUG  Found 0 validation issues.
+18:49:39,720 DEBUG  Found 3 customers with valid transactions.
+18:49:39,720 INFO   Finished creating the content for the output file.
+18:49:39,722 INFO   Started writing data: 40 lines, in test\outputFolder\TX\ProcessedFiles\2017-05-16_06-49-39_SampleFile.tx
+18:49:39,723 INFO   Finished writing data: 40 lines, in test\outputFolder\TX\ProcessedFiles\2017-05-16_06-49-39_SampleFile.tx
+
+18:49:39,723 INFO   Finished with the folder: TX
+18:49:39,723 INFO   Started reading file 2017-05-16_06-49-39_SampleFile.tx
+18:49:39,724 INFO   Finished reading file 2017-05-16_06-49-39_SampleFile.tx
+18:50:03,587 INFO   Searching folders in input folder inputFolder
+18:50:03,589 INFO   Found folder: TX
+18:50:03,594 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@2401f4c3
+18:50:03,630 INFO   Found file:SampleFile.tx
+18:50:03,630 INFO   Started reading file SampleFile.tx
+18:50:03,632 INFO   Finished reading file SampleFile.tx
+18:50:03,632 INFO   Started processing 33 elements
+18:50:03,634 DEBUG  Processing line: 15
+18:50:03,638 DEBUG  Processing line: 16
+18:50:03,639 DEBUG  Processing line: 17
+18:50:03,639 DEBUG  Processing line: 18
+18:50:03,639 DEBUG  Processing line: 19
+18:50:03,639 DEBUG  Processing line: 20
+18:50:03,639 DEBUG  Processing line: 21
+18:50:03,639 DEBUG  Processing line: 24
+18:50:03,640 DEBUG  Processing line: 25
+18:50:03,641 DEBUG  Processing line: 26
+18:50:03,641 DEBUG  Processing line: 27
+18:50:03,641 DEBUG  Processing line: 28
+18:50:03,641 DEBUG  Processing line: 29
+18:50:03,642 DEBUG  Processing line: 30
+18:50:03,642 DEBUG  Processing line: 31
+18:50:03,642 DEBUG  Processing line: 32
+18:50:03,642 DEBUG  Processing line: 33
+18:50:03,642 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+18:50:03,644 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_06-50-03_SampleFile.tx) to folder: target\test\outputFolder\TX\ProcessedFiles\OriginalFiles
+18:50:03,644 INFO   Started creating the content to be written to the output file.
+18:50:03,645 DEBUG  Found 0 validation issues.
+18:50:03,646 DEBUG  Found 3 customers with valid transactions.
+18:50:03,647 INFO   Finished creating the content for the output file.
+18:50:03,649 INFO   Started writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_06-50-03_SampleFile.tx
+18:50:03,649 INFO   Finished writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_06-50-03_SampleFile.tx
+
+18:50:03,650 INFO   Finished with the folder: TX
+18:55:51,741 INFO   Searching folders in input folder inputFolder
+18:55:51,743 INFO   Found folder: TX
+18:55:51,776 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@2401f4c3
+18:55:51,777 INFO   Found file:SampleFile.tx
+18:55:51,777 INFO   Started reading file SampleFile.tx
+18:55:51,778 INFO   Finished reading file SampleFile.tx
+18:55:51,778 INFO   Started processing 33 elements
+18:55:51,795 DEBUG  Processing line: 15
+18:55:51,806 DEBUG  Processing line: 16
+18:55:51,807 DEBUG  Processing line: 17
+18:55:51,807 DEBUG  Processing line: 18
+18:55:51,807 DEBUG  Processing line: 19
+18:55:51,807 DEBUG  Processing line: 20
+18:55:51,807 DEBUG  Processing line: 21
+18:55:51,807 DEBUG  Processing line: 24
+18:55:51,808 DEBUG  Processing line: 25
+18:55:51,808 DEBUG  Processing line: 26
+18:55:51,808 DEBUG  Processing line: 27
+18:55:51,809 DEBUG  Processing line: 28
+18:55:51,809 DEBUG  Processing line: 29
+18:55:51,809 DEBUG  Processing line: 30
+18:55:51,809 DEBUG  Processing line: 31
+18:55:51,809 DEBUG  Processing line: 32
+18:55:51,810 DEBUG  Processing line: 33
+18:55:51,810 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+18:55:51,811 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_06-55-51_SampleFile.tx) to folder: target\test\outputFolder\TX\ProcessedFiles\OriginalFiles
+18:55:51,811 INFO   Started creating the content to be written to the output file.
+18:55:51,811 DEBUG  Found 0 validation issues.
+18:55:51,813 DEBUG  Found 3 customers with valid transactions.
+18:55:51,813 INFO   Finished creating the content for the output file.
+18:55:51,815 INFO   Started writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_06-55-51_SampleFile.tx
+18:55:51,815 INFO   Finished writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_06-55-51_SampleFile.tx
+
+18:55:51,815 INFO   Finished with the folder: TX
+18:55:51,816 INFO   Started reading file 2017-05-16_06-55-51_SampleFile.tx
+18:55:51,816 INFO   Finished reading file 2017-05-16_06-55-51_SampleFile.tx
+19:00:00,813 INFO   Started reading file reader
+19:00:00,847 WARN   The file is a folder. Will not process the folder.
+19:00:00,850 INFO   Started reading file TestFil.tx
+19:00:00,850 WARN   File does not exist.
+19:00:00,851 INFO   Started reading file TestFile.tx
+19:00:00,852 INFO   Finished reading file TestFile.tx
+19:00:00,860 ERROR  File  could not be created.
+19:00:00,862 INFO   Started writing data: 0 lines, in src\test\resources\writer\testFile.txt
+19:00:00,862 INFO   Finished writing data: 0 lines, in src\test\resources\writer\testFile.txt
+
+19:00:00,863 INFO   Started reading file testFile.txt
+19:00:00,863 INFO   Finished reading file testFile.txt
+19:00:00,864 INFO   Started writing data: 7 lines, in src\test\resources\writer\testFile.txt
+19:00:00,865 INFO   Finished writing data: 7 lines, in src\test\resources\writer\testFile.txt
+
+19:00:00,865 INFO   Started reading file testFile.txt
+19:00:00,866 INFO   Finished reading file testFile.txt
+19:00:00,939 INFO   Searching folders in input folder inputFolder
+19:00:00,939 INFO   Found folder: TX
+19:00:00,944 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@52d455b8
+19:00:00,946 INFO   Found file:SampleFile.tx
+19:00:00,951 INFO   Started reading file SampleFile.tx
+19:00:00,952 INFO   Finished reading file SampleFile.tx
+19:00:00,952 INFO   Started processing 33 elements
+19:00:00,954 DEBUG  Processing line: 15
+19:00:00,961 DEBUG  Processing line: 16
+19:00:00,962 DEBUG  Processing line: 17
+19:00:00,962 DEBUG  Processing line: 18
+19:00:00,962 DEBUG  Processing line: 19
+19:00:00,962 DEBUG  Processing line: 20
+19:00:00,962 DEBUG  Processing line: 21
+19:00:00,962 DEBUG  Processing line: 24
+19:00:00,963 DEBUG  Processing line: 25
+19:00:00,963 DEBUG  Processing line: 26
+19:00:00,963 DEBUG  Processing line: 27
+19:00:00,964 DEBUG  Processing line: 28
+19:00:00,964 DEBUG  Processing line: 29
+19:00:00,964 DEBUG  Processing line: 30
+19:00:00,964 DEBUG  Processing line: 31
+19:00:00,964 DEBUG  Processing line: 32
+19:00:00,965 DEBUG  Processing line: 33
+19:00:00,965 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+19:00:00,967 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_07-00-00_SampleFile.tx) to folder: target\test\outputFolder\TX\ProcessedFiles\OriginalFiles
+19:00:00,967 INFO   Started creating the content to be written to the output file.
+19:00:00,968 DEBUG  Found 0 validation issues.
+19:00:00,969 DEBUG  Found 3 customers with valid transactions.
+19:00:00,971 INFO   Finished creating the content for the output file.
+19:00:00,972 INFO   Started writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-00-00_SampleFile.tx
+19:00:00,973 INFO   Finished writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-00-00_SampleFile.tx
+
+19:00:00,973 INFO   Finished with the folder: TX
+19:00:00,974 INFO   Started reading file 2017-05-16_07-00-00_SampleFile.tx
+19:00:01,006 INFO   Finished reading file 2017-05-16_07-00-00_SampleFile.tx
+19:00:39,923 INFO   Started reading file reader
+19:00:39,926 WARN   The file is a folder. Will not process the folder.
+19:00:39,928 INFO   Started reading file TestFil.tx
+19:00:39,929 WARN   File does not exist.
+19:00:39,930 INFO   Started reading file TestFile.tx
+19:00:39,931 INFO   Finished reading file TestFile.tx
+19:00:39,982 ERROR  File  could not be created.
+19:00:39,990 INFO   Started writing data: 0 lines, in src\test\resources\writer\testFile.txt
+19:00:39,991 INFO   Finished writing data: 0 lines, in src\test\resources\writer\testFile.txt
+
+19:00:39,991 INFO   Started reading file testFile.txt
+19:00:39,992 INFO   Finished reading file testFile.txt
+19:00:39,995 INFO   Started writing data: 7 lines, in src\test\resources\writer\testFile.txt
+19:00:39,997 INFO   Finished writing data: 7 lines, in src\test\resources\writer\testFile.txt
+
+19:00:39,997 INFO   Started reading file testFile.txt
+19:00:39,998 INFO   Finished reading file testFile.txt
+19:00:40,022 INFO   Searching folders in input folder inputFolder
+19:00:40,022 INFO   Found folder: TX
+19:00:40,029 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@52d455b8
+19:00:40,031 INFO   Found file:SampleFile.tx
+19:00:40,032 INFO   Started reading file SampleFile.tx
+19:00:40,033 INFO   Finished reading file SampleFile.tx
+19:00:40,033 INFO   Started processing 33 elements
+19:00:40,035 DEBUG  Processing line: 15
+19:00:40,042 DEBUG  Processing line: 16
+19:00:40,043 DEBUG  Processing line: 17
+19:00:40,043 DEBUG  Processing line: 18
+19:00:40,043 DEBUG  Processing line: 19
+19:00:40,044 DEBUG  Processing line: 20
+19:00:40,044 DEBUG  Processing line: 21
+19:00:40,044 DEBUG  Processing line: 24
+19:00:40,045 DEBUG  Processing line: 25
+19:00:40,045 DEBUG  Processing line: 26
+19:00:40,045 DEBUG  Processing line: 27
+19:00:40,045 DEBUG  Processing line: 28
+19:00:40,046 DEBUG  Processing line: 29
+19:00:40,046 DEBUG  Processing line: 30
+19:00:40,046 DEBUG  Processing line: 31
+19:00:40,046 DEBUG  Processing line: 32
+19:00:40,047 DEBUG  Processing line: 33
+19:00:40,047 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+19:00:40,049 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_07-00-40_SampleFile.tx) to folder: target\test\outputFolder\TX\ProcessedFiles\OriginalFiles
+19:00:40,049 INFO   Started creating the content to be written to the output file.
+19:00:40,050 DEBUG  Found 0 validation issues.
+19:00:40,051 DEBUG  Found 3 customers with valid transactions.
+19:00:40,053 INFO   Finished creating the content for the output file.
+19:00:40,054 INFO   Started writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-00-40_SampleFile.tx
+19:00:40,056 INFO   Finished writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-00-40_SampleFile.tx
+
+19:00:40,056 INFO   Finished with the folder: TX
+19:00:40,057 INFO   Started reading file 2017-05-16_07-00-40_SampleFile.tx
+19:00:40,058 INFO   Finished reading file 2017-05-16_07-00-40_SampleFile.tx
+19:00:50,482 INFO   Started reading file reader
+19:00:50,487 WARN   The file is a folder. Will not process the folder.
+19:00:50,498 INFO   Started reading file TestFil.tx
+19:00:50,498 WARN   File does not exist.
+19:00:50,499 INFO   Started reading file TestFile.tx
+19:00:50,501 INFO   Finished reading file TestFile.tx
+19:00:50,507 ERROR  File  could not be created.
+19:00:50,512 INFO   Started writing data: 0 lines, in src\test\resources\writer\testFile.txt
+19:00:50,525 INFO   Finished writing data: 0 lines, in src\test\resources\writer\testFile.txt
+
+19:00:50,525 INFO   Started reading file testFile.txt
+19:00:50,526 INFO   Finished reading file testFile.txt
+19:00:50,527 INFO   Started writing data: 7 lines, in src\test\resources\writer\testFile.txt
+19:00:50,528 INFO   Finished writing data: 7 lines, in src\test\resources\writer\testFile.txt
+
+19:00:50,529 INFO   Started reading file testFile.txt
+19:00:50,530 INFO   Finished reading file testFile.txt
+19:00:50,568 INFO   Searching folders in input folder inputFolder
+19:00:50,568 INFO   Found folder: TX
+19:00:50,574 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@52d455b8
+19:00:50,577 INFO   Found file:SampleFile.tx
+19:00:50,577 INFO   Started reading file SampleFile.tx
+19:00:50,578 INFO   Finished reading file SampleFile.tx
+19:00:50,578 INFO   Started processing 33 elements
+19:00:50,580 DEBUG  Processing line: 15
+19:00:50,585 DEBUG  Processing line: 16
+19:00:50,586 DEBUG  Processing line: 17
+19:00:50,586 DEBUG  Processing line: 18
+19:00:50,586 DEBUG  Processing line: 19
+19:00:50,586 DEBUG  Processing line: 20
+19:00:50,587 DEBUG  Processing line: 21
+19:00:50,587 DEBUG  Processing line: 24
+19:00:50,587 DEBUG  Processing line: 25
+19:00:50,587 DEBUG  Processing line: 26
+19:00:50,588 DEBUG  Processing line: 27
+19:00:50,588 DEBUG  Processing line: 28
+19:00:50,588 DEBUG  Processing line: 29
+19:00:50,588 DEBUG  Processing line: 30
+19:00:50,588 DEBUG  Processing line: 31
+19:00:50,589 DEBUG  Processing line: 32
+19:00:50,589 DEBUG  Processing line: 33
+19:00:50,589 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+19:00:50,592 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_07-00-50_SampleFile.tx) to folder: target\test\outputFolder\TX\ProcessedFiles\OriginalFiles
+19:00:50,592 INFO   Started creating the content to be written to the output file.
+19:00:50,593 DEBUG  Found 0 validation issues.
+19:00:50,595 DEBUG  Found 3 customers with valid transactions.
+19:00:50,596 INFO   Finished creating the content for the output file.
+19:00:50,597 INFO   Started writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-00-50_SampleFile.tx
+19:00:50,599 INFO   Finished writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-00-50_SampleFile.tx
+
+19:00:50,599 INFO   Finished with the folder: TX
+19:00:50,600 INFO   Started reading file 2017-05-16_07-00-50_SampleFile.tx
+19:00:50,602 INFO   Finished reading file 2017-05-16_07-00-50_SampleFile.tx
+19:00:58,977 INFO   Started reading file reader
+19:00:58,981 WARN   The file is a folder. Will not process the folder.
+19:00:58,993 INFO   Started reading file TestFil.tx
+19:00:58,994 WARN   File does not exist.
+19:00:58,994 INFO   Started reading file TestFile.tx
+19:00:58,996 INFO   Finished reading file TestFile.tx
+19:00:59,004 ERROR  File  could not be created.
+19:00:59,006 INFO   Started writing data: 0 lines, in src\test\resources\writer\testFile.txt
+19:00:59,007 INFO   Finished writing data: 0 lines, in src\test\resources\writer\testFile.txt
+
+19:00:59,007 INFO   Started reading file testFile.txt
+19:00:59,008 INFO   Finished reading file testFile.txt
+19:00:59,013 INFO   Started writing data: 7 lines, in src\test\resources\writer\testFile.txt
+19:00:59,014 INFO   Finished writing data: 7 lines, in src\test\resources\writer\testFile.txt
+
+19:00:59,014 INFO   Started reading file testFile.txt
+19:00:59,014 INFO   Finished reading file testFile.txt
+19:00:59,052 INFO   Searching folders in input folder inputFolder
+19:00:59,052 INFO   Found folder: TX
+19:00:59,081 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@52d455b8
+19:00:59,083 INFO   Found file:SampleFile.tx
+19:00:59,084 INFO   Started reading file SampleFile.tx
+19:00:59,085 INFO   Finished reading file SampleFile.tx
+19:00:59,085 INFO   Started processing 33 elements
+19:00:59,087 DEBUG  Processing line: 15
+19:00:59,094 DEBUG  Processing line: 16
+19:00:59,095 DEBUG  Processing line: 17
+19:00:59,095 DEBUG  Processing line: 18
+19:00:59,095 DEBUG  Processing line: 19
+19:00:59,096 DEBUG  Processing line: 20
+19:00:59,096 DEBUG  Processing line: 21
+19:00:59,096 DEBUG  Processing line: 24
+19:00:59,096 DEBUG  Processing line: 25
+19:00:59,097 DEBUG  Processing line: 26
+19:00:59,097 DEBUG  Processing line: 27
+19:00:59,097 DEBUG  Processing line: 28
+19:00:59,097 DEBUG  Processing line: 29
+19:00:59,097 DEBUG  Processing line: 30
+19:00:59,098 DEBUG  Processing line: 31
+19:00:59,098 DEBUG  Processing line: 32
+19:00:59,098 DEBUG  Processing line: 33
+19:00:59,098 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+19:00:59,100 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_07-00-59_SampleFile.tx) to folder: target\test\outputFolder\TX\ProcessedFiles\OriginalFiles
+19:00:59,100 INFO   Started creating the content to be written to the output file.
+19:00:59,100 DEBUG  Found 0 validation issues.
+19:00:59,102 DEBUG  Found 3 customers with valid transactions.
+19:00:59,103 INFO   Finished creating the content for the output file.
+19:00:59,106 INFO   Started writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-00-59_SampleFile.tx
+19:00:59,108 INFO   Finished writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-00-59_SampleFile.tx
+
+19:00:59,108 INFO   Finished with the folder: TX
+19:00:59,108 INFO   Started reading file 2017-05-16_07-00-59_SampleFile.tx
+19:00:59,109 INFO   Finished reading file 2017-05-16_07-00-59_SampleFile.tx
+19:50:11,900 INFO   Started loading properties file.
+19:50:11,919 INFO   Input folder path was found: C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\
+19:50:11,919 INFO   Output folder path was found: C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\ProcessedFiles\
+19:50:11,919 INFO   Finished loading properties file.
+19:50:11,951 INFO   Options:
+19:50:11,951 INFO   1. Continue with the predefined settings
+19:50:11,951 INFO   2. Choose input folder
+19:50:11,951 INFO   3. Choose output folder
+19:50:11,951 INFO   4. Start processing:
+19:50:11,952 INFO   -------------------------------------------------------------------
+19:50:11,952 INFO   - To continue with the predefined settings type 'continue'.
+19:50:11,952 INFO   - To choose the input folder type 'input'.:
+19:50:11,952 INFO   - To choose the output folder type 'output'.
+19:50:11,952 INFO   - To start the processing type 'start'.
+19:50:11,952 INFO   - To close the application type 'exit'.
+19:50:11,952 INFO   Enter command:
+19:50:16,028 INFO   The file: GSD - Financial Application Specifications.odt is not a folder.
+19:50:16,028 INFO   The file: GSD - Financial Application Specifications.pdf is not a folder.
+19:50:16,031 INFO   The file: GSD - TX File Specifications.ods is not a folder.
+19:50:16,034 INFO   The file: GSD - TX File Specifications.pdf is not a folder.
+19:50:16,034 INFO   Searching folders in input folder Financial Application Specifications
+19:50:16,034 INFO   Found folder: ProcessedFiles
+19:50:16,036 INFO   The folder: ProcessedFiles is not processable.
+19:50:16,037 INFO   The file: specifications.txt is not a folder.
+19:50:16,037 INFO   Searching folders in input folder Financial Application Specifications
+19:50:16,037 INFO   Found folder: TOR
+19:50:16,037 INFO   The folder: TOR is not processable.
+19:50:16,046 INFO   Searching folders in input folder Financial Application Specifications
+19:50:16,047 INFO   Found folder: TX
+19:50:16,049 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@27973e9b
+19:50:16,074 INFO   Finished with the folder: TX
+19:50:37,267 INFO   Started reading file reader
+19:50:37,269 WARN   The file is a folder. Will not process the folder.
+19:50:37,271 INFO   Started reading file TestFil.tx
+19:50:37,271 WARN   File does not exist.
+19:50:37,271 INFO   Started reading file TestFile.tx
+19:50:37,282 INFO   Finished reading file TestFile.tx
+19:50:44,140 ERROR  File  could not be created.
+19:50:44,184 INFO   Started writing data: 0 lines, in src\test\resources\writer\testFile.txt
+19:50:44,185 INFO   Finished writing data: 0 lines, in src\test\resources\writer\testFile.txt
+
+19:50:44,185 INFO   Started reading file testFile.txt
+19:50:44,186 INFO   Finished reading file testFile.txt
+19:50:44,187 INFO   Started writing data: 7 lines, in src\test\resources\writer\testFile.txt
+19:50:44,188 INFO   Finished writing data: 7 lines, in src\test\resources\writer\testFile.txt
+
+19:50:44,188 INFO   Started reading file testFile.txt
+19:50:44,190 INFO   Finished reading file testFile.txt
+19:50:50,837 INFO   Searching folders in input folder inputFolder
+19:50:50,838 INFO   Found folder: TX
+19:50:50,842 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@2401f4c3
+19:50:50,844 INFO   Found file:SampleFile.tx
+19:50:50,844 INFO   Started reading file SampleFile.tx
+19:50:50,845 INFO   Finished reading file SampleFile.tx
+19:50:50,845 INFO   Started processing 33 elements
+19:50:50,847 DEBUG  Processing line: 15
+19:50:50,875 DEBUG  Processing line: 16
+19:50:50,876 DEBUG  Processing line: 17
+19:50:50,876 DEBUG  Processing line: 18
+19:50:50,876 DEBUG  Processing line: 19
+19:50:50,876 DEBUG  Processing line: 20
+19:50:50,876 DEBUG  Processing line: 21
+19:50:50,876 DEBUG  Processing line: 24
+19:50:50,877 DEBUG  Processing line: 25
+19:50:50,877 DEBUG  Processing line: 26
+19:50:50,877 DEBUG  Processing line: 27
+19:50:50,877 DEBUG  Processing line: 28
+19:50:50,877 DEBUG  Processing line: 29
+19:50:50,877 DEBUG  Processing line: 30
+19:50:50,878 DEBUG  Processing line: 31
+19:50:50,878 DEBUG  Processing line: 32
+19:50:50,878 DEBUG  Processing line: 33
+19:50:50,878 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+19:50:50,880 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_07-50-50_SampleFile.tx) to folder: target\test\outputFolder\TX\ProcessedFiles\OriginalFiles
+19:50:50,880 INFO   Started creating the content to be written to the output file.
+19:50:50,880 DEBUG  Found 0 validation issues.
+19:50:50,882 DEBUG  Found 3 customers with valid transactions.
+19:50:50,883 INFO   Finished creating the content for the output file.
+19:50:50,884 INFO   Started writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-50-50_SampleFile.tx
+19:50:50,885 INFO   Finished writing data: 40 lines, in target\test\outputFolder\TX\ProcessedFiles\2017-05-16_07-50-50_SampleFile.tx
+
+19:50:50,885 INFO   Finished with the folder: TX
+19:50:50,886 INFO   Started reading file 2017-05-16_07-50-50_SampleFile.tx
+19:50:50,886 INFO   Finished reading file 2017-05-16_07-50-50_SampleFile.tx
+20:08:30,436 INFO   Started loading properties file.
+20:08:30,438 INFO   Input folder path was found: C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\
+20:08:30,438 INFO   Output folder path was found: C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\ProcessedFiles\
+20:08:30,438 INFO   Finished loading properties file.
+20:08:30,460 INFO   Options:
+20:08:30,460 INFO   1. Continue with the predefined settings
+20:08:30,460 INFO   2. Choose input folder
+20:08:30,460 INFO   3. Choose output folder
+20:08:30,460 INFO   4. Start processing:
+20:08:30,460 INFO   -------------------------------------------------------------------
+20:08:30,460 INFO   - To continue with the predefined settings type 'continue'.
+20:08:30,460 INFO   - To choose the input folder type 'input'.:
+20:08:30,460 INFO   - To choose the output folder type 'output'.
+20:08:30,460 INFO   - To start the processing type 'start'.
+20:08:30,460 INFO   - To close the application type 'exit'.
+20:08:30,461 INFO   Enter command:
+20:08:34,071 INFO   The file: GSD - Financial Application Specifications.odt is not a folder.
+20:08:34,072 INFO   The file: GSD - Financial Application Specifications.pdf is not a folder.
+20:08:34,072 INFO   The file: GSD - TX File Specifications.ods is not a folder.
+20:08:34,072 INFO   The file: GSD - TX File Specifications.pdf is not a folder.
+20:08:34,072 INFO   Searching folders in input folder Financial Application Specifications
+20:08:34,072 INFO   Found folder: ProcessedFiles
+20:08:34,077 INFO   The folder: ProcessedFiles is not processable.
+20:08:34,077 INFO   The file: specifications.txt is not a folder.
+20:08:34,077 INFO   Searching folders in input folder Financial Application Specifications
+20:08:34,077 INFO   Found folder: TOR
+20:08:34,077 INFO   The folder: TOR is not processable.
+20:08:34,077 INFO   Searching folders in input folder Financial Application Specifications
+20:08:34,077 INFO   Found folder: TX
+20:08:34,079 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@27973e9b
+20:08:34,098 INFO   Found file:SampleFile.tx
+20:08:34,098 INFO   Started reading file SampleFile.tx
+20:08:34,099 INFO   Finished reading file SampleFile.tx
+20:08:34,099 INFO   Started processing 33 elements
+20:08:34,101 DEBUG  Processing line: 15
+20:08:34,116 DEBUG  Processing line: 16
+20:08:34,116 DEBUG  Processing line: 17
+20:08:34,116 DEBUG  Processing line: 18
+20:08:34,117 DEBUG  Processing line: 19
+20:08:34,117 DEBUG  Processing line: 20
+20:08:34,117 DEBUG  Processing line: 21
+20:08:34,117 DEBUG  Processing line: 24
+20:08:34,118 DEBUG  Processing line: 25
+20:08:34,118 DEBUG  Processing line: 26
+20:08:34,118 DEBUG  Processing line: 27
+20:08:34,118 DEBUG  Processing line: 28
+20:08:34,118 DEBUG  Processing line: 29
+20:08:34,119 DEBUG  Processing line: 30
+20:08:34,119 DEBUG  Processing line: 31
+20:08:34,119 DEBUG  Processing line: 32
+20:08:34,119 DEBUG  Processing line: 33
+20:08:34,119 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+20:08:34,195 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_08-08-34_SampleFile.tx) to folder: C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\ProcessedFiles\TX\ProcessedFiles\OriginalFiles
+20:08:34,196 INFO   Started creating the content to be written to the output file.
+20:08:34,196 DEBUG  Found 0 validation issues.
+20:08:34,235 DEBUG  Found 3 customers with valid transactions.
+20:08:34,259 INFO   Finished creating the content for the output file.
+20:08:34,261 INFO   Started writing data: 40 lines, in C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\ProcessedFiles\TX\ProcessedFiles\2017-05-16_08-08-34_SampleFile.tx
+20:08:34,262 INFO   Finished writing data: 40 lines, in C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\ProcessedFiles\TX\ProcessedFiles\2017-05-16_08-08-34_SampleFile.tx
+
+20:08:34,262 INFO   Found file:test.txt
+20:08:34,263 INFO   Started reading file test.txt
+20:08:34,263 INFO   Finished reading file test.txt
+20:08:34,263 INFO   Started processing 18 elements
+20:08:34,263 DEBUG  Processing line: 6
+20:08:34,263 DEBUG  Processing line: 7
+20:08:34,264 DEBUG  Processing line: 8
+20:08:34,264 DEBUG  Processing line: 9
+20:08:34,264 DEBUG  Processing line: 12
+20:08:34,264 DEBUG  Processing line: 13
+20:08:34,264 DEBUG  Processing line: 14
+20:08:34,265 DEBUG  Processing line: 16
+20:08:34,265 DEBUG  Processing line: 17
+20:08:34,265 DEBUG  Processing line: 18
+20:08:34,265 INFO   Finished processing 10 elements. (only the lines that shouldn't be ignored.)
+20:08:34,281 DEBUG  Moved file: test.txt (renamed as 2017-05-16_08-08-34_test.txt) to folder: C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\ProcessedFiles\TX\ProcessedFiles\OriginalFiles
+20:08:34,283 INFO   Started creating the content to be written to the output file.
+20:08:34,284 DEBUG  Found 6 validation issues.
+20:08:34,284 DEBUG  Found 2 customers with valid transactions.
+20:08:34,284 INFO   Finished creating the content for the output file.
+20:08:34,285 INFO   Started writing data: 48 lines, in C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\ProcessedFiles\TX\ProcessedFiles\2017-05-16_08-08-34_test.txt
+20:08:34,286 INFO   Finished writing data: 48 lines, in C:\Users\Alexandra\Desktop\Financial-Application-Specifications\Financial Application Specifications\ProcessedFiles\TX\ProcessedFiles\2017-05-16_08-08-34_test.txt
+
+20:08:34,286 INFO   Finished with the folder: TX
+20:26:45,810 INFO   Started loading properties file.
+20:26:45,813 INFO   Input folder path was found: target/input_folder
+20:26:45,813 INFO   Output folder path was found: target/output_folder
+20:26:45,813 INFO   Finished loading properties file.
+20:26:45,816 INFO   Options:
+20:26:45,816 INFO   1. Continue with the predefined settings
+20:26:45,816 INFO   2. Choose input folder
+20:26:45,816 INFO   3. Choose output folder
+20:26:45,816 INFO   4. Start processing:
+20:26:45,816 INFO   -------------------------------------------------------------------
+20:26:45,817 INFO   - To continue with the predefined settings type 'continue'.
+20:26:45,817 INFO   - To choose the input folder type 'input'.:
+20:26:45,817 INFO   - To choose the output folder type 'output'.
+20:26:45,817 INFO   - To start the processing type 'start'.
+20:26:45,817 INFO   - To close the application type 'exit'.
+20:26:45,817 INFO   Enter command:
+20:26:49,893 INFO   The file: SampleFile.tx is not a folder.
+20:27:59,521 INFO   Started loading properties file.
+20:27:59,524 INFO   Input folder path was found: target/input_folder/TX
+20:27:59,524 INFO   Output folder path was found: target/output_folder
+20:27:59,524 INFO   Finished loading properties file.
+20:27:59,527 INFO   Options:
+20:27:59,527 INFO   1. Continue with the predefined settings
+20:27:59,527 INFO   2. Choose input folder
+20:27:59,527 INFO   3. Choose output folder
+20:27:59,527 INFO   4. Start processing:
+20:27:59,527 INFO   -------------------------------------------------------------------
+20:27:59,527 INFO   - To continue with the predefined settings type 'continue'.
+20:27:59,527 INFO   - To choose the input folder type 'input'.:
+20:27:59,527 INFO   - To choose the output folder type 'output'.
+20:27:59,527 INFO   - To start the processing type 'start'.
+20:27:59,527 INFO   - To close the application type 'exit'.
+20:27:59,527 INFO   Enter command:
+20:28:03,537 INFO   The file: SampleFile.tx is not a folder.
+20:29:32,192 INFO   Started loading properties file.
+20:29:32,194 INFO   Input folder path was found: target/input_folder/TX
+20:29:32,194 INFO   Output folder path was found: target/output_folder
+20:29:32,194 INFO   Finished loading properties file.
+20:29:32,197 INFO   Options:
+20:29:32,197 INFO   1. Continue with the predefined settings
+20:29:32,197 INFO   2. Choose input folder
+20:29:32,197 INFO   3. Choose output folder
+20:29:32,197 INFO   4. Start processing:
+20:29:32,198 INFO   -------------------------------------------------------------------
+20:29:32,198 INFO   - To continue with the predefined settings type 'continue'.
+20:29:32,198 INFO   - To choose the input folder type 'input'.:
+20:29:32,198 INFO   - To choose the output folder type 'output'.
+20:29:32,198 INFO   - To start the processing type 'start'.
+20:29:32,198 INFO   - To close the application type 'exit'.
+20:29:32,198 INFO   Enter command:
+20:29:36,567 INFO   The file: SampleFile.tx is not a folder.
+20:29:45,594 INFO   Started loading properties file.
+20:29:45,596 INFO   Input folder path was found: target/input_folder/TX
+20:29:45,597 INFO   Output folder path was found: target/output_folder
+20:29:45,597 INFO   Finished loading properties file.
+20:29:45,600 INFO   Options:
+20:29:45,600 INFO   1. Continue with the predefined settings
+20:29:45,600 INFO   2. Choose input folder
+20:29:45,600 INFO   3. Choose output folder
+20:29:45,600 INFO   4. Start processing:
+20:29:45,600 INFO   -------------------------------------------------------------------
+20:29:45,601 INFO   - To continue with the predefined settings type 'continue'.
+20:29:45,601 INFO   - To choose the input folder type 'input'.:
+20:29:45,601 INFO   - To choose the output folder type 'output'.
+20:29:45,601 INFO   - To start the processing type 'start'.
+20:29:45,601 INFO   - To close the application type 'exit'.
+20:29:45,601 INFO   Enter command:
+20:30:05,633 INFO   The file: SampleFile.tx is not a folder.
+20:34:38,945 INFO   Started loading properties file.
+20:34:38,948 INFO   Input folder path was found: target/input_folder
+20:34:38,948 INFO   Output folder path was found: target/output_folder
+20:34:38,948 INFO   Finished loading properties file.
+20:34:38,952 INFO   Options:
+20:34:38,952 INFO   1. Continue with the predefined settings
+20:34:38,952 INFO   2. Choose input folder
+20:34:38,952 INFO   3. Choose output folder
+20:34:38,952 INFO   4. Start processing:
+20:34:38,952 INFO   -------------------------------------------------------------------
+20:34:38,953 INFO   - To continue with the predefined settings type 'continue'.
+20:34:38,953 INFO   - To choose the input folder type 'input'.:
+20:34:38,953 INFO   - To choose the output folder type 'output'.
+20:34:38,953 INFO   - To start the processing type 'start'.
+20:34:38,953 INFO   - To close the application type 'exit'.
+20:34:38,953 INFO   Enter command:
+20:34:43,090 INFO   Searching folders in input folder input_folder
+20:34:43,090 INFO   Found folder: TX
+20:34:43,093 DEBUG  The processor to use is: financial.file.parser.tx.processor.TXProcessor@27973e9b
+20:34:43,121 INFO   Found file:SampleFile.tx
+20:34:43,122 INFO   Started reading file SampleFile.tx
+20:34:43,123 INFO   Finished reading file SampleFile.tx
+20:34:43,123 INFO   Started processing 33 elements
+20:34:43,124 DEBUG  Processing line: 15
+20:34:43,128 DEBUG  Processing line: 16
+20:34:43,129 DEBUG  Processing line: 17
+20:34:43,129 DEBUG  Processing line: 18
+20:34:43,129 DEBUG  Processing line: 19
+20:34:43,129 DEBUG  Processing line: 20
+20:34:43,129 DEBUG  Processing line: 21
+20:34:43,129 DEBUG  Processing line: 24
+20:34:43,130 DEBUG  Processing line: 25
+20:34:43,130 DEBUG  Processing line: 26
+20:34:43,130 DEBUG  Processing line: 27
+20:34:43,130 DEBUG  Processing line: 28
+20:34:43,130 DEBUG  Processing line: 29
+20:34:43,130 DEBUG  Processing line: 30
+20:34:43,130 DEBUG  Processing line: 31
+20:34:43,131 DEBUG  Processing line: 32
+20:34:43,131 DEBUG  Processing line: 33
+20:34:43,131 INFO   Finished processing 17 elements. (only the lines that shouldn't be ignored.)
+20:34:43,139 DEBUG  Moved file: SampleFile.tx (renamed as 2017-05-16_08-34-43_SampleFile.tx) to folder: target\output_folder\TX\ProcessedFiles\OriginalFiles
+20:34:43,139 INFO   Started creating the content to be written to the output file.
+20:34:43,139 DEBUG  Found 0 validation issues.
+20:34:43,140 DEBUG  Found 3 customers with valid transactions.
+20:34:43,141 INFO   Finished creating the content for the output file.
+20:34:43,142 INFO   Started writing data: 40 lines, in target\output_folder\TX\ProcessedFiles\2017-05-16_08-34-43_SampleFile.tx
+20:34:43,143 INFO   Finished writing data: 40 lines, in target\output_folder\TX\ProcessedFiles\2017-05-16_08-34-43_SampleFile.tx
+
+20:34:43,143 INFO   Finished with the folder: TX
