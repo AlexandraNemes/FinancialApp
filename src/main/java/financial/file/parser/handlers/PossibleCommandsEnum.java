@@ -8,28 +8,24 @@ package financial.file.parser.handlers;
  *
  */
 public enum PossibleCommandsEnum {
-    
-    UNKNOWN(""),
-    CONTINUE("continue"),
-    INPUT("input"),
-    OUTPUT("output"),
-    START("start"),
-    EXIT("exit");
-    
+
+    UNKNOWN(""), CONTINUE("continue"), INPUT("input"), OUTPUT("output"), START("start"), EXIT("exit");
+
     private String command;
-    
-    private PossibleCommandsEnum (String command) {
+
+    private PossibleCommandsEnum(String command) {
 	this.command = command;
     }
-    
+
     public String getCommand() {
 	return command;
     }
-    
+
     /**
      * Converts the input user into a command.
      * 
-     * @param message the input from the user
+     * @param message
+     *            the input from the user
      * @return one of the possible Enum values
      */
     public static PossibleCommandsEnum convert(String message) {

@@ -7,20 +7,19 @@ package financial.file.parser.tx.common;
  *
  */
 public enum TXRecordTypeEnum {
-    
-    CREDIT_TRANSACTION ("0"),
-    DEBIT_TRANSACTION("1");
-    
+
+    CREDIT_TRANSACTION("0"), DEBIT_TRANSACTION("1");
+
     private String recordType;
-    
-    private TXRecordTypeEnum (String recordType) {
+
+    private TXRecordTypeEnum(String recordType) {
 	this.recordType = recordType;
     }
 
     public String getRecordType() {
-        return recordType;
+	return recordType;
     }
-    
+
     /**
      * Checks for a match between a String it gets and the Enum values.
      * 

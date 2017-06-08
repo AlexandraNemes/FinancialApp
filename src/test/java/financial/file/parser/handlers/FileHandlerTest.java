@@ -43,7 +43,7 @@ public class FileHandlerTest {
 
 	this.deleteDir(testInputFolder);
 	this.deleteDir(testOutputFolder);
-	
+
 	testInputFolder.mkdirs();
 	testOutputFolder.mkdirs();
     }
@@ -83,21 +83,20 @@ public class FileHandlerTest {
 
 	// get the expected file content
 	List<String> expectedFileContent = loadExpectedFileContent();
-	
+
 	assertEquals(expectedFileContent, actualFileContent);
-	
+
 	// we know that we processed only a single file, check that the output
 	// folder contains only one file (the one that has been processed)
 	assertTrue(originalFiles.listFiles().length == 1);
-	
+
 	// get the hash code of the original SampleFile
 	String backUpFileHashCode = getFileHashCode(BACKUP_TX_TEST_FILE);
 	String testFileHashCode = getFileHashCode(originalFiles.listFiles()[0].getPath());
-	
+
 	assertEquals(backUpFileHashCode, testFileHashCode);
     }
 
-    
     private String getFileHashCode(String file) throws NoSuchAlgorithmException, IOException {
 	MessageDigest md = MessageDigest.getInstance("SHA1");
 	FileInputStream fis = new FileInputStream(file);
@@ -121,7 +120,6 @@ public class FileHandlerTest {
 	return sb.toString();
     }
 
-    
     private void deleteDir(File folder) {
 	File[] contents = folder.listFiles();
 	if (contents != null) {
@@ -131,8 +129,7 @@ public class FileHandlerTest {
 	    }
 	}
     }
-    
-    
+
     private List<String> loadExpectedFileContent() {
 	List<String> fileContent = new ArrayList<String>();
 
@@ -176,11 +173,10 @@ public class FileHandlerTest {
 	fileContent.add("Total amount of PHONE transactions: 100.00");
 	fileContent.add("Total amount of OTHER transactions: 100.00");
 	fileContent.add("");
-	
+
 	return fileContent;
     }
-    
-    
+
     private void copyBackUpFile() {
 	File backupTestFile = new File(BACKUP_TX_TEST_FILE);
 	File testFile = new File(TX_INPUT_TEST_FOLDER + File.separator + backupTestFile.getName());

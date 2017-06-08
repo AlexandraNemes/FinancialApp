@@ -16,11 +16,11 @@ import org.apache.log4j.Logger;
 
 import financial.file.parser.common.AbstractProcessorOutput;
 import financial.file.parser.common.exception.FileWriterException;
-import financial.file.parser.common.writer.FinancialApplicationWriter;
+import financial.file.parser.common.writer.impl.FinancialApplicationFileWriter;
 import financial.file.parser.common.writer.ISummaryFileWriter;
 import financial.file.parser.tx.common.TXCustomerTransaction;
 import financial.file.parser.tx.common.TXFinalOutput;
-import financial.file.parser.tx.common.TXTransaction;
+import financial.file.parser.tx.common.TXTransactionDTO;
 import financial.file.parser.tx.common.TXTransactionTypeEnum;
 import financial.file.parser.tx.common.TXValidationError;
 
@@ -68,7 +68,7 @@ public class TXSummaryFileWriter implements ISummaryFileWriter {
 	} else {
 	    fileContent.add("Validation issues: \n");
 	}
-	
+
 	// adding the validation issues to the file content
 	for (TXValidationError error : txFinalOutput.getValidationErrorList()) {
 	    fileContent.add("Validation error on line " + error.getLineNumber() + ". ");
@@ -85,7 +85,7 @@ public class TXSummaryFileWriter implements ISummaryFileWriter {
 	Map<String, TXCustomerTransaction> customerNumberMap = new HashMap<String, TXCustomerTransaction>();
 
 	// add elements to the Map
-	for (TXTransaction transaction : txFinalOutput.getTransactionList()) {
+	for (TXTransactionDTO transaction : txFinalOutput.getTransactionList()) {
 
 	    TXCustomerTransaction customerTransaction = customerNumberMap.get(transaction.getCustomerNumber());
 
@@ -118,10 +118,10 @@ public class TXSummaryFileWriter implements ISummaryFileWriter {
 
 	    Map<TXTransactionTypeEnum, BigDecimal> transactionTypeMap = value.getTransactionTypeMap();
 	    Set<TXTransactionTypeEnum> transactionTypeSet = transactionTypeMap.keySet();
-	    
+
 	    ArrayList<TXTransactionTypeEnum> transactionTypeList = new ArrayList<TXTransactionTypeEnum>(transactionTypeSet);
 	    Collections.sort(transactionTypeList);
-	    
+
 	    for (TXTransactionTypeEnum transactionTypeKey : transactionTypeList) {
 		BigDecimal txValue = value.getTransactionTypeMap().get(transactionTypeKey);
 		fileContent.add("Total amount of " + transactionTypeKey + " transactions: " + txValue);
@@ -129,16 +129,15 @@ public class TXSummaryFileWriter implements ISummaryFileWriter {
 	    fileContent.add("");
 	}
 
-
 	if (LOG.isInfoEnabled()) {
 	    LOG.info("Finished creating the content for the output file.");
 	}
-	
-	FinancialApplicationWriter fileWriter = new FinancialApplicationWriter();
+
+	FinancialApplicationFileWriter fileWriter = new FinancialApplicationFileWriter();
 	try {
-	    fileWriter.write(fileContent, outputFile);
+	    fileWriter.writeToFile(fileContent, outputFile);
 	} catch (FileWriterException e) {
-	    
+
 	}
 	return fileContent;
     }

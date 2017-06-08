@@ -36,7 +36,6 @@ public class FileProcessorsFactory {
 	return INSTANCE;
     }
 
-    
     /**
      * This method is used to create a new instance of a class that extends
      * IFileProcessor depending on the name of the input folder. The possible

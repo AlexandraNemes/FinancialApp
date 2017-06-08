@@ -19,7 +19,7 @@ public class MainHandler {
     private static final Logger LOG = Logger.getLogger(MainHandler.class);
     private static File inputFolder = null;
     private static File outputFolder = null;
-    
+
     public static void main(String[] args) {
 	FileHandler fileHandler = new FileHandler();
 	readPropertiesFile();
@@ -31,21 +31,21 @@ public class MainHandler {
 	    LOG.info("2. Choose input folder");
 	    LOG.info("3. Choose output folder");
 	    LOG.info("4. Start processing:");
-	    
+
 	    LOG.info("-------------------------------------------------------------------");
 	    LOG.info("- To continue with the predefined settings type 'continue'.");
 	    LOG.info("- To choose the input folder type 'input'.:");
 	    LOG.info("- To choose the output folder type 'output'.");
 	    LOG.info("- To start the processing type 'start'.");
-	    LOG.info("- To close the application type 'exit'."); 
-	    
+	    LOG.info("- To close the application type 'exit'.");
+
 	    LOG.info("Enter command:");
 	}
 
 	boolean done = false;
 	File userInputFolder = inputFolder;
 	File userOutputFolder = outputFolder;
-	
+
 	while (!done) {
 	    String message = scan.nextLine();
 	    PossibleCommandsEnum command = PossibleCommandsEnum.convert(message);
@@ -81,7 +81,6 @@ public class MainHandler {
 	}
 	scan.close();
     }
-    
 
     /**
      * Reads the properties file and creates the input folder and the output

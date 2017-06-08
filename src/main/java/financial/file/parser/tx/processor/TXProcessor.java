@@ -14,7 +14,7 @@ import financial.file.parser.common.FileLine;
 import financial.file.parser.common.processor.IFileProcessor;
 import financial.file.parser.tx.common.TXFinalOutput;
 import financial.file.parser.tx.common.TXRecordTypeEnum;
-import financial.file.parser.tx.common.TXTransaction;
+import financial.file.parser.tx.common.TXTransactionDTO;
 import financial.file.parser.tx.common.TXTransactionTypeEnum;
 import financial.file.parser.tx.common.TXValidationError;
 
@@ -27,9 +27,9 @@ import financial.file.parser.tx.common.TXValidationError;
 public class TXProcessor implements IFileProcessor {
 
     private static final Logger LOG = Logger.getLogger(TXProcessor.class);
-    
+
     private static final DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    
+
     /**
      * Checks the list to get the lines that shouldn't be ignored. It process
      * those lines and adds the ones with issues in a List of ValidationErrors
@@ -42,7 +42,7 @@ public class TXProcessor implements IFileProcessor {
      */
     public TXFinalOutput process(List<FileLine> fileLineList) {
 
-	List<TXTransaction> transactionList = new ArrayList<TXTransaction>();
+	List<TXTransactionDTO> transactionList = new ArrayList<TXTransactionDTO>();
 	List<TXValidationError> validationErrorList = new ArrayList<TXValidationError>();
 	TXFinalOutput finalOutput = null;
 
@@ -66,7 +66,7 @@ public class TXProcessor implements IFileProcessor {
 	if (LOG.isInfoEnabled()) {
 	    LOG.info("Started processing " + fileLineList.size() + " elements");
 	}
-	
+
 	for (FileLine line : fileLineList) {
 	    if (!shouldIgnoreLine(line)) {
 		if (!headerFound) {
@@ -74,7 +74,7 @@ public class TXProcessor implements IFileProcessor {
 		}
 		if (headerFound && headerProcessed) {
 
-		    TXTransaction transaction = new TXTransaction();
+		    TXTransactionDTO transaction = new TXTransactionDTO();
 		    TXValidationError validationError = new TXValidationError(line.getLineNumber());
 
 		    if (LOG.isDebugEnabled()) {
@@ -179,7 +179,7 @@ public class TXProcessor implements IFileProcessor {
 		}
 	    }
 	}
-  
+
 	if (LOG.isInfoEnabled()) {
 	    LOG.info("Finished processing " + (validationErrorList.size() + transactionList.size()) + " elements. (only the lines that shouldn't be ignored.)");
 	}

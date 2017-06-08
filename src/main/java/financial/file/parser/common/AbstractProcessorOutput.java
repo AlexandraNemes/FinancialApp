@@ -8,5 +8,5 @@ package financial.file.parser.common;
  *
  */
 public abstract class AbstractProcessorOutput {
-    
+
 }

@@ -31,5 +31,3 @@ public class FileLine {
 	return "FileLine [lineNumber=" + lineNumber + ", lineContent=" + lineContent + "]";
     }
 }
-
-   

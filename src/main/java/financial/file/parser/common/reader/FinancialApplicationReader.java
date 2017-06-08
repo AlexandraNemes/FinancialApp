@@ -21,7 +21,7 @@ import financial.file.parser.common.exception.FileReaderException;
 public class FinancialApplicationReader {
 
     private static final Logger LOG = Logger.getLogger(FinancialApplicationReader.class);
-    
+
     /**
      * Reads data from a file line by line and returns a FileLine List as an
      * output.
@@ -30,19 +30,19 @@ public class FinancialApplicationReader {
      *            the file to read
      * @return a FileLine List with Objects that store the number of the line
      *         and also it's content
-     * @throws FileReaderException 
+     * @throws FileReaderException
      */
     public List<FileLine> read(File file) throws FileReaderException {
-	if(file == null) {
+	if (file == null) {
 	    throw new FileReaderException("input is null");
 	}
-	
+
 	List<FileLine> fileLineList = null;
 
 	if (LOG.isInfoEnabled()) {
 	    LOG.info("Started reading file " + file.getName());
 	}
-	
+
 	if (file.exists()) {
 	    if (file.isFile()) {
 		// create an ArrayList to store the lines read from the file
@@ -80,7 +80,6 @@ public class FinancialApplicationReader {
 	    LOG.warn("File does not exist.");
 	    throw new FileReaderException("file does not exist");
 	}
-	
 
 	if (LOG.isInfoEnabled()) {
 	    LOG.info("Finished reading file " + file.getName());

@@ -8,22 +8,18 @@ package financial.file.parser.tx.common;
  */
 public enum TXTransactionTypeEnum {
 
-    CASH ("0"),
-    CREDIT_CARD ("1"),
-    CHEQUE ("2"),
-    PHONE ("3"),
-    OTHER ("4");
-    
+    CASH("0"), CREDIT_CARD("1"), CHEQUE("2"), PHONE("3"), OTHER("4");
+
     private String transactionType;
-    
-    private TXTransactionTypeEnum (String transactionType) {
+
+    private TXTransactionTypeEnum(String transactionType) {
 	this.transactionType = transactionType;
     }
 
     public String getTransactionType() {
-        return transactionType;
+	return transactionType;
     }
-    
+
     /**
      * Checks for a match between a String it gets and the Enum values.
      * 
@@ -33,7 +29,7 @@ public enum TXTransactionTypeEnum {
      */
     public static TXTransactionTypeEnum fromValue(String value) {
 	TXTransactionTypeEnum output = null;
-	
+
 	if (value != null && !value.trim().isEmpty()) {
 	    for (TXTransactionTypeEnum transactionTypeEnum : values()) {
 		if (transactionTypeEnum.getTransactionType().equals(value)) {

@@ -13,15 +13,15 @@ import financial.file.parser.common.AbstractProcessorOutput;
  */
 public class TXFinalOutput extends AbstractProcessorOutput {
 
-    private List<TXTransaction> transactionList;
+    private List<TXTransactionDTO> transactionList;
     private List<TXValidationError> validationErrorList;
 
-    public TXFinalOutput(List<TXValidationError> validationErrorList, List<TXTransaction> transactionList) {
+    public TXFinalOutput(List<TXValidationError> validationErrorList, List<TXTransactionDTO> transactionList) {
 	this.validationErrorList = validationErrorList;
 	this.transactionList = transactionList;
     }
 
-    public List<TXTransaction> getTransactionList() {
+    public List<TXTransactionDTO> getTransactionList() {
 	return transactionList;
     }
 

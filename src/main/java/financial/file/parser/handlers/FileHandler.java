@@ -30,14 +30,13 @@ import financial.file.parser.tx.writer.TXSummaryFileWriter;
  *
  */
 public class FileHandler {
-    
+
     private static final Logger LOG = Logger.getLogger(FileHandler.class);
-    
+
     private static FinancialApplicationReader reader = new FinancialApplicationReader();
     private static ISummaryFileWriter writer = new TXSummaryFileWriter();
     private static DateFormat format = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss_");
 
-    
     /**
      * Takes a command from the user, a path to create an input or output
      * folder. If the path can be used to create the folder, the method returns
@@ -58,8 +57,7 @@ public class FileHandler {
 	    userInput = scan.nextLine();
 	    File userDefinedFile = new File(userInput);
 
-	    if ((userDefinedFile.exists() && userDefinedFile.isDirectory())
-		    || userInput.trim().equalsIgnoreCase("exit")) {
+	    if ((userDefinedFile.exists() && userDefinedFile.isDirectory()) || userInput.trim().equalsIgnoreCase("exit")) {
 		output = userDefinedFile;
 		tryAgain = false;
 	    } else {
@@ -67,14 +65,14 @@ public class FileHandler {
 		System.out.println("Specified path does not exist or is not a directory.");
 	    }
 	} while (tryAgain);
-	
+
 	return output;
     }
 
     /**
      * Checks all the files from the input folder. If it can find a
-     * corresponding processor it will process the files from that folder.
-     * It also creates the folder structure for the output.
+     * corresponding processor it will process the files from that folder. It
+     * also creates the folder structure for the output.
      * 
      * @param inputFolder
      * @param outputFolder
@@ -91,7 +89,7 @@ public class FileHandler {
 
 		// get a processor to use, according to the folder name
 		IFileProcessor fileProcessorInstance = FileProcessorsFactory.getInstance().getFileProcessor(folderName);
-		
+
 		if (fileProcessorInstance != null) {
 		    if (LOG.isDebugEnabled()) {
 			LOG.debug("The processor to use is: " + fileProcessorInstance);
@@ -106,8 +104,8 @@ public class FileHandler {
 		    File crntOutputFolder = new File(originalFilesFolderPath);
 		    crntOutputFolder.mkdirs();
 
-		    // for each folder that can be processed from the input folder
-		    // all the files will be checked and read
+		    // for each folder that can be processed from the input
+		    // folder all the files will be checked and read
 		    for (File file : folder.listFiles()) {
 			if (file.isFile()) {
 			    if (LOG.isInfoEnabled()) {
@@ -147,8 +145,8 @@ public class FileHandler {
 		}
 	    } else {
 		if (LOG.isInfoEnabled()) {
-			LOG.info("The file: " + folder.getName() + " is not a folder.");
-		    }
+		    LOG.info("The file: " + folder.getName() + " is not a folder.");
+		}
 	    }
 	}
     }

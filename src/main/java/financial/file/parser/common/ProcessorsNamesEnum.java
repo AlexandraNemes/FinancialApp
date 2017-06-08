@@ -11,9 +11,9 @@ import financial.file.parser.tx.processor.TXProcessor;
  */
 public enum ProcessorsNamesEnum {
     TX(TXProcessor.class);
-    
+
     private Class<? extends IFileProcessor> clazz;
-    
+
     private ProcessorsNamesEnum(Class<? extends IFileProcessor> clazz) {
 	this.clazz = clazz;
     }
