@@ -1,0 +1,19 @@
+CREATE DATABASE IF NOT EXISTS financial_app_db;
+
+DROP TABLE IF EXISTS customers;
+CREATE TABLE customers(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	customer_number BIGINT NOT NULL UNIQUE,
+	customer_name VARCHAR(60) NOT NULL
+);
+ 
+DROP TABLE IF EXISTS transactions;
+CREATE TABLE transactions(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	record_type ENUM('CREDIT', 'DEBIT') NOT NULL,
+	processing_date DATETIME NOT NULL,
+	transaction_type ENUM('CASH', 'CREDIT_CARD', 'CHEQUE', 'PHONE', 'OTHER') NOT NULL,
+	transaction_amount DECIMAL(12,2) NOT NULL,
+	customer_id INT UNSIGNED NOT NULL,
+	FOREIGN KEY(customer_id) REFERENCES customers(id)
+);

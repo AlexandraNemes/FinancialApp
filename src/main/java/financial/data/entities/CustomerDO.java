@@ -29,4 +29,17 @@ public class CustomerDO {
 	return customerName;
     }
 
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("CustomerDO [id=");
+	builder.append(id);
+	builder.append(", customerNumber=");
+	builder.append(customerNumber);
+	builder.append(", customerName=");
+	builder.append(customerName);
+	builder.append("]");
+	return builder.toString();
+    }
+
 }

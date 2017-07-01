@@ -63,4 +63,23 @@ public class TransactionDO {
 	return customer;
     }
 
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("TransactionDO [id=");
+	builder.append(id);
+	builder.append(", recordType=");
+	builder.append(recordType);
+	builder.append(", processingDate=");
+	builder.append(processingDate);
+	builder.append(", transactionType=");
+	builder.append(transactionType);
+	builder.append(", transactionAmount=");
+	builder.append(transactionAmount);
+	builder.append(", customer=");
+	builder.append(customer);
+	builder.append("]");
+	return builder.toString();
+    }
+
 }

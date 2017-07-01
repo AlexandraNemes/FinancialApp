@@ -2,6 +2,7 @@ package financial.file.parser.common.writer;
 
 import java.util.List;
 
+import financial.data.exception.FinancialDBException;
 import financial.file.parser.common.ITransactionDTO;
 
 /**
@@ -14,5 +15,5 @@ import financial.file.parser.common.ITransactionDTO;
  */
 public interface ITransactionDBWriter<T extends ITransactionDTO> {
 
-    public void writeToDB(List<T> content);
+    public void writeToDB(List<T> content) throws FinancialDBException;
 }
