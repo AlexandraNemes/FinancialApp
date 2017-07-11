@@ -13,7 +13,7 @@ import financial.file.parser.common.ITransactionDTO;
  *
  * @param <T extends TransactionDTO>
  */
-public interface ITransactionDBWriter<T extends ITransactionDTO> {
+public interface IDBWriter<T extends ITransactionDTO> extends IWriter {
 
     public void writeToDB(List<T> content) throws FinancialDBException;
 }

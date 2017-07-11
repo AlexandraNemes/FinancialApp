@@ -12,7 +12,7 @@ import financial.file.parser.common.AbstractProcessorOutput;
  * @author Alexandra Nemes
  *
  */
-public interface ISummaryFileWriter {
+public interface ISummaryFileWriter extends IWriter {
 
     public List<String> write(AbstractProcessorOutput output, File file);
 }

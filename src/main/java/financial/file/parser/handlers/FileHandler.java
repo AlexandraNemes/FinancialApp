@@ -20,8 +20,7 @@ import financial.file.parser.common.FileProcessorsFactory;
 import financial.file.parser.common.exception.FileReaderException;
 import financial.file.parser.common.processor.IFileProcessor;
 import financial.file.parser.common.reader.FinancialApplicationReader;
-import financial.file.parser.common.writer.ISummaryFileWriter;
-import financial.file.parser.tx.writer.TXSummaryFileWriter;
+import financial.file.parser.common.writer.IWriter;
 
 /**
  * Class used to define methods for reading and processing the files.
@@ -34,7 +33,7 @@ public class FileHandler {
     private static final Logger LOG = Logger.getLogger(FileHandler.class);
 
     private static FinancialApplicationReader reader = new FinancialApplicationReader();
-    private static ISummaryFileWriter writer = new TXSummaryFileWriter();
+    private static IWriter writer = null;
     private static DateFormat format = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss_");
 
     /**
@@ -89,6 +88,7 @@ public class FileHandler {
 
 		// get a processor to use, according to the folder name
 		IFileProcessor fileProcessorInstance = FileProcessorsFactory.getInstance().getFileProcessor(folderName);
+		
 
 		if (fileProcessorInstance != null) {
 		    if (LOG.isDebugEnabled()) {
@@ -125,7 +125,7 @@ public class FileHandler {
 
 				File outputFile = new File(processedFilesFolderPath + outputFileName);
 
-				writer.write(finalOutput, outputFile);
+				//writer.write(finalOutput, outputFile);
 			    } catch (FileReaderException e) {
 				LOG.error("The file " + file.getName() + " can not be read because " + e.getErrorMessage());
 			    }
@@ -189,5 +189,9 @@ public class FileHandler {
 		LOG.error("Can not move file " + outputFolder.getName() + " to folder " + fileName);
 	    }
 	}
+    }
+    
+    public void processToDB(File inputFolder) {
+	
     }
 }

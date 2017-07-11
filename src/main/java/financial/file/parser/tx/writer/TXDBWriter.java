@@ -11,7 +11,7 @@ import financial.data.dao.impl.TransactionDAO;
 import financial.data.entities.CustomerDO;
 import financial.data.entities.TransactionDO;
 import financial.data.exception.FinancialDBException;
-import financial.file.parser.common.writer.ITransactionDBWriter;
+import financial.file.parser.common.writer.IDBWriter;
 import financial.file.parser.tx.common.TXTransactionDTO;
 
 /**
@@ -20,7 +20,7 @@ import financial.file.parser.tx.common.TXTransactionDTO;
  * @author Alexandra Nemes
  *
  */
-public class TXDBWriter implements ITransactionDBWriter<TXTransactionDTO> {
+public class TXDBWriter implements IDBWriter<TXTransactionDTO> {
 
     private static final Logger LOG = Logger.getLogger(TXDBWriter.class);
     

@@ -9,7 +9,10 @@ package financial.file.parser.handlers;
  */
 public enum PossibleCommandsEnum {
 
-    UNKNOWN(""), CONTINUE("continue"), INPUT("input"), OUTPUT("output"), START("start"), EXIT("exit");
+    UNKNOWN(""), 
+    INPUT("input"), 
+    START("start"), 
+    EXIT("exit");
 
     private String command;
 

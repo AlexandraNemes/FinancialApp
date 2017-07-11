@@ -41,15 +41,11 @@ public class MainHandler {
 	Scanner scan = new Scanner(System.in);
 	if (LOG.isInfoEnabled()) {
 	    LOG.info("Options:");
-	    LOG.info("1. Continue with the predefined settings");
-	    LOG.info("2. Choose input folder");
-	    LOG.info("3. Choose output folder");
-	    LOG.info("4. Start processing:");
+	    LOG.info("	1. Enter input folder");
+	    LOG.info("	2. Start processing:");
 
 	    LOG.info("-------------------------------------------------------------------");
-	    LOG.info("- To continue with the predefined settings type 'continue'.");
 	    LOG.info("- To choose the input folder type 'input'.:");
-	    LOG.info("- To choose the output folder type 'output'.");
 	    LOG.info("- To start the processing type 'start'.");
 	    LOG.info("- To close the application type 'exit'.");
 
@@ -65,24 +61,14 @@ public class MainHandler {
 	    PossibleCommandsEnum command = PossibleCommandsEnum.convert(message);
 
 	    switch (command) {
-	    case CONTINUE:
-		fileHandler.processFiles(inputFolder, outputFolder);
-		break;
 	    case INPUT:
 		File output = fileHandler.doReadFile(scan, "Enter the input folder or type 'exit':");
 		if (output != null) {
 		    userInputFolder = output;
 		}
 		break;
-	    case OUTPUT:
-		output = fileHandler.doReadFile(scan, "Enter the output folder or type 'exit': ");
-		if (output != null) {
-		    userOutputFolder = output;
-		}
-		break;
 	    case START:
-		fileHandler.processFiles(userInputFolder, userOutputFolder);
-		break;
+
 	    case EXIT:
 		done = true;
 		break;
