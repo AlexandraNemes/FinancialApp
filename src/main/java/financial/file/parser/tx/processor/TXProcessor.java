@@ -192,5 +192,5 @@ public class TXProcessor implements IFileProcessor {
 
     private boolean isHeader(FileLine fileLine) {
 	return (fileLine.getLineContent().trim().startsWith("Record Type"));
-    }
+    }    
 }

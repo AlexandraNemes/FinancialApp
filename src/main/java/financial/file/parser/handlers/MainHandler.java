@@ -68,7 +68,7 @@ public class MainHandler {
 		}
 		break;
 	    case START:
-
+		
 	    case EXIT:
 		done = true;
 		break;

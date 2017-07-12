@@ -12,6 +12,7 @@ import financial.file.parser.common.FileLine;
  *
  */
 public interface IFileProcessor {
-
+    
     public AbstractProcessorOutput process(List<FileLine> fileLineList);
+   
 }

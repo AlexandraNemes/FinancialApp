@@ -68,6 +68,7 @@ public class FileHandler {
 	return output;
     }
 
+    
     /**
      * Checks all the files from the input folder. If it can find a
      * corresponding processor it will process the files from that folder. It
@@ -190,8 +191,5 @@ public class FileHandler {
 	    }
 	}
     }
-    
-    public void processToDB(File inputFolder) {
-	
-    }
+
 }

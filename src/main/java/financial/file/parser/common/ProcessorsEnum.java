@@ -15,16 +15,25 @@ import financial.file.parser.tx.writer.TXSummaryFileWriter;
  * @author Alexandra Nemes
  *
  */
-public enum ProcessorsNamesEnum {
+public enum ProcessorsEnum {
     TX(TXProcessor.class, new ArrayList<Class<? extends IWriter>>() {{ add(TXSummaryFileWriter.class); add(TXDBWriter.class); }});
 
     private Class<? extends IFileProcessor> clazz;
+    private List<Class<? extends IWriter>> writers;
 
-    private ProcessorsNamesEnum(Class<? extends IFileProcessor> clazz, List<Class<? extends IWriter>> writers) {
+    private ProcessorsEnum(Class<? extends IFileProcessor> clazz, List<Class<? extends IWriter>> writers) {
 	this.clazz = clazz;
+	this.writers = writers;
     }
 
     public Class<? extends IFileProcessor> getProcessorClass() {
 	return clazz;
     }
+    
+    public List<Class<? extends IWriter>> getProcessorWritersClasses() {
+	return writers;
+    }
+    
+
+
 }
