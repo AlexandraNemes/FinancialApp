@@ -20,13 +20,14 @@ import financial.data.exception.FinancialDBException;
 public class MainHandler {
 
     public static final Properties PROPERTIES = new Properties();
+    public static final Scanner SCANNER = new Scanner(System.in);
+    public static File outputFolder = null;
 
     private static final Logger LOG = Logger.getLogger(MainHandler.class);
 
     private static String inputFolderPath = null;
     private static String outputFolderPath = null;
     private static File inputFolder = null;
-    private static File outputFolder = null;
     private static String url = null;
     private static String username = null;
     private static String password = null;
@@ -38,7 +39,6 @@ public class MainHandler {
 	createFolders();
 	initializeDBConnector();
 
-	Scanner scan = new Scanner(System.in);
 	if (LOG.isInfoEnabled()) {
 	    LOG.info("Options:");
 	    LOG.info("	1. Enter input folder");
@@ -54,21 +54,20 @@ public class MainHandler {
 
 	boolean done = false;
 	File userInputFolder = inputFolder;
-	File userOutputFolder = outputFolder;
 
 	while (!done) {
-	    String message = scan.nextLine();
+	    String message = SCANNER.nextLine();
 	    PossibleCommandsEnum command = PossibleCommandsEnum.convert(message);
 
 	    switch (command) {
 	    case INPUT:
-		File output = fileHandler.doReadFile(scan, "Enter the input folder or type 'exit':");
+		File output = fileHandler.doReadFile("Enter the input folder or type 'exit':");
 		if (output != null) {
 		    userInputFolder = output;
 		}
 		break;
 	    case START:
-		
+		fileHandler.processFiles(userInputFolder);
 	    case EXIT:
 		done = true;
 		break;
@@ -79,7 +78,7 @@ public class MainHandler {
 		break;
 	    }
 	}
-	scan.close();
+	SCANNER.close();
     }
 
     /**

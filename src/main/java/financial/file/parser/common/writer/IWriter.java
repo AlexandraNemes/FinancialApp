@@ -1,5 +1,7 @@
 package financial.file.parser.common.writer;
 
-public interface IWriter {
+import financial.file.parser.common.ITransactionDTO;
+
+public interface IWriter<T extends ITransactionDTO> {
 
 }

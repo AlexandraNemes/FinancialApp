@@ -18,7 +18,7 @@ import financial.file.parser.common.writer.IWriter;
  *
  */
 public class FileProcessorsFactory {
-    
+
     private static final Logger LOG = Logger.getLogger(FileProcessorsFactory.class);
 
     // a Map used to group classes by their name in order to
@@ -37,22 +37,29 @@ public class FileProcessorsFactory {
     public static FileProcessorsFactory getInstance() {
 	return INSTANCE;
     }
-    
+
+    /**
+     * This class is used to create processor objects that contain the class of
+     * the processor and also the list of it's available writers.
+     * 
+     * @author Alexandra Nemes
+     *
+     */
     private class ProcessorDetails {
 	private Class<? extends IFileProcessor> processorType;
-	private List<Class<? extends IWriter>> writersList;
+	private Map<String, Class<? extends IWriter>> writersMap;
 
-	private ProcessorDetails(Class<? extends IFileProcessor> processorType, List<Class<? extends IWriter>> writersList) {
+	private ProcessorDetails(Class<? extends IFileProcessor> processorType, Map<String, Class<? extends IWriter>> writersList) {
 	    this.processorType = processorType;
-	    this.writersList = writersList;
+	    this.writersMap = writersList;
 	}
 
 	public Class<? extends IFileProcessor> getProcessorType() {
 	    return processorType;
 	}
 
-	public List<Class<? extends IWriter>> getWritersList() {
-	    return writersList;
+	public Map<String, Class<? extends IWriter>> getWritersList() {
+	    return writersMap;
 	}
 
     }
@@ -98,13 +105,19 @@ public class FileProcessorsFactory {
 	}
 	return instance;
     }
-    
-    public List<Class<? extends IWriter>> getWriters(String folderName) {
-	List<Class<? extends IWriter>> writersList = null;
-	writersList = PROCESSORS_MAP.get(folderName).getWritersList();
-	
-	return writersList;
-	
-    }
 
+    /**
+     * This method is used to return the writers available for a specific file type
+     * depending on the name of the folder that contains that file.
+     * 
+     * @param folderName
+     * @return writersMap
+     */
+    public Map<String, Class<? extends IWriter>> getWriters(String folderName) {
+	Map<String, Class<? extends IWriter>> writersMap = null;
+	writersMap = PROCESSORS_MAP.get(folderName).getWritersList();
+
+	return writersMap;
+
+    }
 }

@@ -1,5 +1,8 @@
 package financial.file.parser.handlers;
 
+import static financial.file.parser.handlers.MainHandler.SCANNER;
+import static financial.file.parser.handlers.MainHandler.outputFolder;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -10,16 +13,20 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import financial.data.exception.FinancialDBException;
 import financial.file.parser.common.AbstractProcessorOutput;
 import financial.file.parser.common.FileLine;
 import financial.file.parser.common.FileProcessorsFactory;
+import financial.file.parser.common.ITransactionDTO;
 import financial.file.parser.common.exception.FileReaderException;
 import financial.file.parser.common.processor.IFileProcessor;
 import financial.file.parser.common.reader.FinancialApplicationReader;
+import financial.file.parser.common.writer.IDBWriter;
+import financial.file.parser.common.writer.ISummaryFileWriter;
 import financial.file.parser.common.writer.IWriter;
 
 /**
@@ -31,10 +38,10 @@ import financial.file.parser.common.writer.IWriter;
 public class FileHandler {
 
     private static final Logger LOG = Logger.getLogger(FileHandler.class);
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss_");
 
     private static FinancialApplicationReader reader = new FinancialApplicationReader();
-    private static IWriter writer = null;
-    private static DateFormat format = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss_");
+    private IWriter<ITransactionDTO> writer = null;
 
     /**
      * Takes a command from the user, a path to create an input or output
@@ -47,13 +54,13 @@ public class FileHandler {
      *            the command from the user
      * @return a folder created from the path given by the user
      */
-    public File doReadFile(Scanner scan, String message) {
+    public File doReadFile(String message) {
 	File output = null;
 	boolean tryAgain = true;
 	String userInput = null;
 	do {
 	    System.out.println(message);
-	    userInput = scan.nextLine();
+	    userInput = SCANNER.nextLine();
 	    File userDefinedFile = new File(userInput);
 
 	    if ((userDefinedFile.exists() && userDefinedFile.isDirectory()) || userInput.trim().equalsIgnoreCase("exit")) {
@@ -68,7 +75,6 @@ public class FileHandler {
 	return output;
     }
 
-    
     /**
      * Checks all the files from the input folder. If it can find a
      * corresponding processor it will process the files from that folder. It
@@ -77,7 +83,7 @@ public class FileHandler {
      * @param inputFolder
      * @param outputFolder
      */
-    public void processFiles(final File inputFolder, final File outputFolder) {
+    public void processFiles(final File inputFolder) {
 	for (File folder : inputFolder.listFiles()) {
 	    // check the input folder and get the names of its folders
 	    if (folder.isDirectory()) {
@@ -89,21 +95,13 @@ public class FileHandler {
 
 		// get a processor to use, according to the folder name
 		IFileProcessor fileProcessorInstance = FileProcessorsFactory.getInstance().getFileProcessor(folderName);
-		
 
 		if (fileProcessorInstance != null) {
+		    Map<String, Class<? extends IWriter>> writersMap = FileProcessorsFactory.getInstance().getWriters(folderName);
+
 		    if (LOG.isDebugEnabled()) {
 			LOG.debug("The processor to use is: " + fileProcessorInstance);
 		    }
-		    // create the folder structure for the output
-		    // both the processed files and the original files
-		    String outputFolderPath = outputFolder.getPath();
-		    String folderNamePath = outputFolderPath + File.separator + folderName + File.separator;
-		    String processedFilesFolderPath = folderNamePath + "ProcessedFiles" + File.separator;
-		    String originalFilesFolderPath = processedFilesFolderPath + "OriginalFiles" + File.separator;
-
-		    File crntOutputFolder = new File(originalFilesFolderPath);
-		    crntOutputFolder.mkdirs();
 
 		    // for each folder that can be processed from the input
 		    // folder all the files will be checked and read
@@ -117,27 +115,67 @@ public class FileHandler {
 				List<FileLine> fileLineList = reader.read(file);
 				AbstractProcessorOutput finalOutput = fileProcessorInstance.process(fileLineList);
 
-				String outputFileName = format.format(new Date()) + file.getName();
-
-				moveFile(file, crntOutputFolder, outputFileName);
-				if (LOG.isDebugEnabled()) {
-				    LOG.debug("Moved file: " + file.getName() + " (renamed as " + outputFileName + ") to folder: " + crntOutputFolder);
+				if (LOG.isInfoEnabled()) {
+				    LOG.info("Available writers: ");
 				}
 
-				File outputFile = new File(processedFilesFolderPath + outputFileName);
+				for (String command : writersMap.keySet()) {
+				    Class<? extends IWriter> writerClass = writersMap.get(command);
+				    if (LOG.isInfoEnabled()) {
+					LOG.info("type " + command + " to use class " + writerClass.getSimpleName());
+				    }
+				}
 
-				//writer.write(finalOutput, outputFile);
+				String message = SCANNER.nextLine();
+
+				Class<? extends IWriter> writerClassToUse = writersMap.get(message);
+
+				try {
+				    writer = writerClassToUse.newInstance();
+				} catch (InstantiationException | IllegalAccessException e) {
+				    LOG.error("Error occured " + e.getMessage());
+				}
+
+				if (writer instanceof ISummaryFileWriter) {
+				    // create the output folder structure for
+				    // the result and the original files
+				    String outputFolderPath = outputFolder.getPath();
+				    String folderNamePath = outputFolderPath + File.separator + folderName + File.separator;
+				    String processedFilesFolderPath = folderNamePath + "ProcessedFiles" + File.separator;
+				    String originalFilesFolderPath = processedFilesFolderPath + "OriginalFiles" + File.separator;
+
+				    File crntOutputFolder = new File(originalFilesFolderPath);
+				    crntOutputFolder.mkdirs();
+
+				    String outputFileName = DATE_FORMAT.format(new Date()) + file.getName();
+
+				    moveFile(file, crntOutputFolder, outputFileName);
+				    if (LOG.isDebugEnabled()) {
+					LOG.debug("Moved file: " + file.getName() + " (renamed as " + outputFileName + ") to folder: " + crntOutputFolder);
+				    }
+
+				    File outputFile = new File(processedFilesFolderPath + outputFileName);
+
+				    ((ISummaryFileWriter) writer).write(finalOutput, outputFile);
+				}
+
+				if (writer instanceof IDBWriter) {
+				    try {
+					List<ITransactionDTO> transactionList = finalOutput.getTransactionList();
+					((IDBWriter) writer).writeToDB(transactionList);
+				    } catch (FinancialDBException e) {
+					LOG.error("Could not write to database. Error: " + e.getErrorMessage());
+				    }
+				}
 			    } catch (FileReaderException e) {
 				LOG.error("The file " + file.getName() + " can not be read because " + e.getErrorMessage());
 			    }
+
 			} else {
 			    if (LOG.isInfoEnabled()) {
 				LOG.info("The folder " + folder.getName() + " does not contain any files.");
 			    }
 			}
-		    }
-		    if (LOG.isInfoEnabled()) {
-			LOG.info("Finished with the folder: " + folder.getName());
 		    }
 		} else {
 		    if (LOG.isInfoEnabled()) {
@@ -150,6 +188,7 @@ public class FileHandler {
 		}
 	    }
 	}
+
     }
 
     /**

@@ -11,18 +11,17 @@ import financial.file.parser.common.AbstractProcessorOutput;
  * @author Alexandra Nemes
  *
  */
-public class TXFinalOutput extends AbstractProcessorOutput {
+public class TXFinalOutput extends AbstractProcessorOutput<TXTransactionDTO> {
 
-    private List<TXTransactionDTO> transactionList;
     private List<TXValidationError> validationErrorList;
 
-    public TXFinalOutput(List<TXValidationError> validationErrorList, List<TXTransactionDTO> transactionList) {
-	this.validationErrorList = validationErrorList;
-	this.transactionList = transactionList;
+    public TXFinalOutput(List<TXTransactionDTO> transactionList) {
+	super(transactionList);
     }
-
-    public List<TXTransactionDTO> getTransactionList() {
-	return transactionList;
+    
+    public TXFinalOutput(List<TXValidationError> validationErrorList, List<TXTransactionDTO> transactionList) {
+	super(transactionList);
+	this.validationErrorList = validationErrorList;
     }
 
     public List<TXValidationError> getValidationErrorList() {
