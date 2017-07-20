@@ -53,6 +53,9 @@ public class MainHandler {
 	}
 
 	boolean done = false;
+	
+	// if the user doesn't specify an input folder the input folder from
+	// properties file will be used
 	File userInputFolder = inputFolder;
 
 	while (!done) {
@@ -61,7 +64,7 @@ public class MainHandler {
 
 	    switch (command) {
 	    case INPUT:
-		File output = fileHandler.doReadFile("Enter the input folder or type 'exit':");
+		File output = fileHandler.readUserFolder("Enter the input folder or type 'exit':");
 		if (output != null) {
 		    userInputFolder = output;
 		}
@@ -128,7 +131,7 @@ public class MainHandler {
      * @param dbUsername
      * @param dbPassword
      * @param dbDriver
-     * @throws FinancialDBException 
+     * @throws FinancialDBException
      */
     public static void initializeDBConnector() throws FinancialDBException {
 	try {

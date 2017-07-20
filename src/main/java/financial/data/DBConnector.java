@@ -8,10 +8,16 @@ import org.apache.log4j.Logger;
 
 import financial.data.exception.FinancialDBException;
 
+/**
+ * Class used to create connection to the database.
+ * 
+ * @author Alexandra Nemes
+ *
+ */
 public class DBConnector {
 
     private static final Logger LOG = Logger.getLogger(DBConnector.class);
-    
+
     private static DBConnector INSTANCE = null;
     private String dbURL;
     private String dbUsername;
@@ -24,6 +30,15 @@ public class DBConnector {
 	this.dbPassword = dbPassword;
     }
 
+    /**
+     * This method is used to initialize the connector for the database.
+     * 
+     * @param url
+     * @param username
+     * @param password
+     * @param driverClass
+     * @throws FinancialDBException
+     */
     public static void initializeConnector(String url, String username, String password, String driverClass) throws FinancialDBException {
 	if (INSTANCE == null) {
 	    if (driverClass == null || driverClass.trim().isEmpty()) {
@@ -43,6 +58,12 @@ public class DBConnector {
 	return INSTANCE;
     }
 
+    /**
+     * This method is used to get a connection to the database.
+     * 
+     * @return Connection
+     * @throws FinancialDBException
+     */
     public Connection getConnection() throws FinancialDBException {
 	if (INSTANCE == null) {
 	    throw new FinancialDBException("DBConnector instance is null");

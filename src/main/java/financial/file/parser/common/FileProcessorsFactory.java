@@ -3,7 +3,6 @@ package financial.file.parser.common;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -46,19 +45,19 @@ public class FileProcessorsFactory {
      *
      */
     private class ProcessorDetails {
-	private Class<? extends IFileProcessor> processorType;
-	private Map<String, Class<? extends IWriter>> writersMap;
+	private Class<? extends IFileProcessor<?>> processorType;
+	private Map<String, Class<? extends IWriter<ITransactionDTO>>> writersMap;
 
-	private ProcessorDetails(Class<? extends IFileProcessor> processorType, Map<String, Class<? extends IWriter>> writersList) {
+	private ProcessorDetails(Class<? extends IFileProcessor<?>> processorType, Map<String, Class<? extends IWriter<ITransactionDTO>>> writersList) {
 	    this.processorType = processorType;
 	    this.writersMap = writersList;
 	}
 
-	public Class<? extends IFileProcessor> getProcessorType() {
+	public Class<? extends IFileProcessor<?>> getProcessorType() {
 	    return processorType;
 	}
 
-	public Map<String, Class<? extends IWriter>> getWritersList() {
+	public Map<String, Class<? extends IWriter<ITransactionDTO>>> getWritersList() {
 	    return writersMap;
 	}
 
@@ -78,13 +77,14 @@ public class FileProcessorsFactory {
      * 
      * @see ProcessorsEnum
      */
-    public IFileProcessor getFileProcessor(String folderName) {
-	IFileProcessor instance = null;
+    @SuppressWarnings("unchecked")
+    public IFileProcessor<ITransactionDTO> getFileProcessor(String folderName) {
+	IFileProcessor<ITransactionDTO> instance = null;
 
 	// check if the input folder name matches one of the values
 	// from our Map. If it does, search for a constructor without parameters
 	// in that class and create an instance of it.
-	Class<? extends IFileProcessor> clazz = PROCESSORS_MAP.get(folderName).getProcessorType();
+	Class<? extends IFileProcessor<?>> clazz = PROCESSORS_MAP.get(folderName).getProcessorType();
 	if (clazz != null) {
 	    Constructor<?> foundConstructor = null;
 	    for (Constructor<?> constructor : clazz.getConstructors()) {
@@ -95,7 +95,7 @@ public class FileProcessorsFactory {
 
 	    if (foundConstructor != null) {
 		try {
-		    instance = (IFileProcessor) foundConstructor.newInstance();
+		    instance = (IFileProcessor<ITransactionDTO>) foundConstructor.newInstance();
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 		    LOG.error("Exception occured.", e);
 		}
@@ -113,8 +113,8 @@ public class FileProcessorsFactory {
      * @param folderName
      * @return writersMap
      */
-    public Map<String, Class<? extends IWriter>> getWriters(String folderName) {
-	Map<String, Class<? extends IWriter>> writersMap = null;
+    public Map<String, Class<? extends IWriter<ITransactionDTO>>> getWriters(String folderName) {
+	Map<String, Class<? extends IWriter<ITransactionDTO>>> writersMap = null;
 	writersMap = PROCESSORS_MAP.get(folderName).getWritersList();
 
 	return writersMap;

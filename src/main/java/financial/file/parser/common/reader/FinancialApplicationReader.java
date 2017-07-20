@@ -39,8 +39,8 @@ public class FinancialApplicationReader {
 
 	List<FileLine> fileLineList = null;
 
-	if (LOG.isInfoEnabled()) {
-	    LOG.info("Started reading file " + file.getName());
+	if (LOG.isDebugEnabled()) {
+	    LOG.debug("Started reading file " + file.getName());
 	}
 
 	if (file.exists()) {
@@ -81,8 +81,8 @@ public class FinancialApplicationReader {
 	    throw new FileReaderException("file does not exist");
 	}
 
-	if (LOG.isInfoEnabled()) {
-	    LOG.info("Finished reading file " + file.getName());
+	if (LOG.isDebugEnabled()) {
+	    LOG.debug("Finished reading file " + file.getName());
 	}
 	return fileLineList;
     }

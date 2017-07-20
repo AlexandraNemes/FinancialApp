@@ -1,5 +1,11 @@
 package financial.data.exception;
 
+/**
+ * Custom exception for database.
+ * 
+ * @author Alexandra Nemes
+ *
+ */
 public class FinancialDBException extends Exception {
 
     private static final long serialVersionUID = -800118664898712667L;

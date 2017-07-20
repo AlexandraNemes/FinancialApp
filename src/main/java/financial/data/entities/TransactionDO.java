@@ -3,6 +3,13 @@ package financial.data.entities;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Class used to create transaction objects that will be written to the
+ * database.
+ * 
+ * @author Alexandra Nemes
+ *
+ */
 public class TransactionDO {
 
     private Long id;

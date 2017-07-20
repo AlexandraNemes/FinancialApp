@@ -48,13 +48,11 @@ public class FileHandler {
      * folder. If the path can be used to create the folder, the method returns
      * that folder.
      * 
-     * @param scan
-     *            the input from the user
      * @param message
      *            the command from the user
      * @return a folder created from the path given by the user
      */
-    public File doReadFile(String message) {
+    public File readUserFolder(String message) {
 	File output = null;
 	boolean tryAgain = true;
 	String userInput = null;
@@ -77,11 +75,11 @@ public class FileHandler {
 
     /**
      * Checks all the files from the input folder. If it can find a
-     * corresponding processor it will process the files from that folder. It
-     * also creates the folder structure for the output.
+     * corresponding processor it will process the files from that folder and
+     * write the result where the user chooses. It also creates the folder
+     * structure for the output if the user chooses to write to file.
      * 
      * @param inputFolder
-     * @param outputFolder
      */
     public void processFiles(final File inputFolder) {
 	for (File folder : inputFolder.listFiles()) {
@@ -94,10 +92,10 @@ public class FileHandler {
 		}
 
 		// get a processor to use, according to the folder name
-		IFileProcessor fileProcessorInstance = FileProcessorsFactory.getInstance().getFileProcessor(folderName);
+		IFileProcessor<ITransactionDTO> fileProcessorInstance = FileProcessorsFactory.getInstance().getFileProcessor(folderName);
 
 		if (fileProcessorInstance != null) {
-		    Map<String, Class<? extends IWriter>> writersMap = FileProcessorsFactory.getInstance().getWriters(folderName);
+		    Map<String, Class<? extends IWriter<ITransactionDTO>>> writersMap = FileProcessorsFactory.getInstance().getWriters(folderName);
 
 		    if (LOG.isDebugEnabled()) {
 			LOG.debug("The processor to use is: " + fileProcessorInstance);
@@ -113,14 +111,14 @@ public class FileHandler {
 
 			    try {
 				List<FileLine> fileLineList = reader.read(file);
-				AbstractProcessorOutput finalOutput = fileProcessorInstance.process(fileLineList);
+				AbstractProcessorOutput<ITransactionDTO> finalOutput = fileProcessorInstance.process(fileLineList);
 
 				if (LOG.isInfoEnabled()) {
 				    LOG.info("Available writers: ");
 				}
 
 				for (String command : writersMap.keySet()) {
-				    Class<? extends IWriter> writerClass = writersMap.get(command);
+				    Class<? extends IWriter<ITransactionDTO>> writerClass = writersMap.get(command);
 				    if (LOG.isInfoEnabled()) {
 					LOG.info("type " + command + " to use class " + writerClass.getSimpleName());
 				    }
@@ -128,48 +126,57 @@ public class FileHandler {
 
 				String message = SCANNER.nextLine();
 
-				Class<? extends IWriter> writerClassToUse = writersMap.get(message);
+				Class<? extends IWriter<ITransactionDTO>> writerClassToUse = writersMap.get(message);
 
-				try {
-				    writer = writerClassToUse.newInstance();
-				} catch (InstantiationException | IllegalAccessException e) {
-				    LOG.error("Error occured " + e.getMessage());
-				}
-
-				if (writer instanceof ISummaryFileWriter) {
-				    // create the output folder structure for
-				    // the result and the original files
-				    String outputFolderPath = outputFolder.getPath();
-				    String folderNamePath = outputFolderPath + File.separator + folderName + File.separator;
-				    String processedFilesFolderPath = folderNamePath + "ProcessedFiles" + File.separator;
-				    String originalFilesFolderPath = processedFilesFolderPath + "OriginalFiles" + File.separator;
-
-				    File crntOutputFolder = new File(originalFilesFolderPath);
-				    crntOutputFolder.mkdirs();
-
-				    String outputFileName = DATE_FORMAT.format(new Date()) + file.getName();
-
-				    moveFile(file, crntOutputFolder, outputFileName);
-				    if (LOG.isDebugEnabled()) {
-					LOG.debug("Moved file: " + file.getName() + " (renamed as " + outputFileName + ") to folder: " + crntOutputFolder);
-				    }
-
-				    File outputFile = new File(processedFilesFolderPath + outputFileName);
-
-				    ((ISummaryFileWriter) writer).write(finalOutput, outputFile);
-				}
-
-				if (writer instanceof IDBWriter) {
+				if (writerClassToUse != null) {
+				    
 				    try {
-					List<ITransactionDTO> transactionList = finalOutput.getTransactionList();
-					((IDBWriter) writer).writeToDB(transactionList);
-				    } catch (FinancialDBException e) {
-					LOG.error("Could not write to database. Error: " + e.getErrorMessage());
+					writer = writerClassToUse.newInstance();
+				    } catch (InstantiationException | IllegalAccessException e) {
+					LOG.error("Error occured " + e.getMessage());
+				    }
+				    
+				    if (writer instanceof ISummaryFileWriter) {
+					// create the output folder structure for
+					// the result and the original files
+					String outputFolderPath = outputFolder.getPath();
+					String folderNamePath = outputFolderPath + File.separator + folderName + File.separator;
+					String processedFilesFolderPath = folderNamePath + "ProcessedFiles" + File.separator;
+					String originalFilesFolderPath = processedFilesFolderPath + "OriginalFiles" + File.separator;
+					
+					File crntOutputFolder = new File(originalFilesFolderPath);
+					crntOutputFolder.mkdirs();
+					
+					String outputFileName = DATE_FORMAT.format(new Date()) + file.getName();
+					
+					moveFile(file, crntOutputFolder, outputFileName);
+					if (LOG.isDebugEnabled()) {
+					    LOG.debug("Moved file: " + file.getName() + " (renamed as " + outputFileName + ") to folder: " + crntOutputFolder);
+					}
+					
+					File outputFile = new File(processedFilesFolderPath + outputFileName);
+					
+					((ISummaryFileWriter<ITransactionDTO>) writer).write(finalOutput, outputFile);
+				    }
+				    
+				    if (writer instanceof IDBWriter) {
+					try {
+					    List<ITransactionDTO> transactionList = finalOutput.getTransactionList();
+					    ((IDBWriter<ITransactionDTO>) writer).writeToDB(transactionList);
+					} catch (FinancialDBException e) {
+					    LOG.error("Could not write to database. Error: " + e.getErrorMessage());
+					}
+					
+				    }
+				} else {
+				    if (LOG.isInfoEnabled()) {
+					LOG.info("No writer can be created with the command: " + message);
+					LOG.info("Enter command or type 'exit' to exit.");
 				    }
 				}
 			    } catch (FileReaderException e) {
 				LOG.error("The file " + file.getName() + " can not be read because " + e.getErrorMessage());
-			    }
+				}
 
 			} else {
 			    if (LOG.isInfoEnabled()) {

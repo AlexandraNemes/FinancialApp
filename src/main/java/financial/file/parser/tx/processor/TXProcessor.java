@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import financial.file.parser.common.AbstractProcessorOutput;
 import financial.file.parser.common.FileLine;
 import financial.file.parser.common.processor.IFileProcessor;
 import financial.file.parser.tx.common.TXFinalOutput;
@@ -24,7 +25,7 @@ import financial.file.parser.tx.common.TXValidationError;
  * @author Alexandra Nemes
  *
  */
-public class TXProcessor implements IFileProcessor {
+public class TXProcessor implements IFileProcessor<TXTransactionDTO> {
 
     private static final Logger LOG = Logger.getLogger(TXProcessor.class);
 
@@ -40,7 +41,8 @@ public class TXProcessor implements IFileProcessor {
      * @return an object that contains the lists of validation errors and
      *         completed transactions
      */
-    public TXFinalOutput process(List<FileLine> fileLineList) {
+    @Override
+    public AbstractProcessorOutput<TXTransactionDTO> process(List<FileLine> fileLineList) {
 
 	List<TXTransactionDTO> transactionList = new ArrayList<TXTransactionDTO>();
 	List<TXValidationError> validationErrorList = new ArrayList<TXValidationError>();
@@ -63,8 +65,8 @@ public class TXProcessor implements IFileProcessor {
 	// Transaction object to a List of Transactions, else we add the
 	// ValidationError object to a List of validation Errors
 
-	if (LOG.isInfoEnabled()) {
-	    LOG.info("Started processing " + fileLineList.size() + " elements");
+	if (LOG.isDebugEnabled()) {
+	    LOG.debug("Started processing " + fileLineList.size() + " elements");
 	}
 
 	for (FileLine line : fileLineList) {
@@ -180,17 +182,29 @@ public class TXProcessor implements IFileProcessor {
 	    }
 	}
 
-	if (LOG.isInfoEnabled()) {
-	    LOG.info("Finished processing " + (validationErrorList.size() + transactionList.size()) + " elements. (only the lines that shouldn't be ignored.)");
+	if (LOG.isDebugEnabled()) {
+	    LOG.debug("Finished processing " + (validationErrorList.size() + transactionList.size()) + " elements. (only the lines that shouldn't be ignored.)");
 	}
 	return finalOutput;
     }
 
+    /**
+     * Returns true if a certain line should be ignored.
+     * 
+     * @param fileLine
+     *            a line read from the file
+     */
     private boolean shouldIgnoreLine(FileLine fileLine) {
 	return (fileLine.getLineContent().trim().isEmpty() || fileLine.getLineContent().trim().startsWith("#"));
     }
 
+    /**
+     * Returns true if a certain line is the expected header of the file
+     * 
+     * @param fileLine
+     *            a line read from the file
+     */
     private boolean isHeader(FileLine fileLine) {
 	return (fileLine.getLineContent().trim().startsWith("Record Type"));
-    }    
+    }
 }

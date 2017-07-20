@@ -11,7 +11,7 @@ import financial.file.parser.common.ITransactionDTO;
  * 
  * @author Alexandra Nemes
  *
- * @param <T extends TransactionDTO>
+ * @param <T>
  */
 public interface IDBWriter<T extends ITransactionDTO> extends IWriter<ITransactionDTO> {
 

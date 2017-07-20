@@ -23,35 +23,46 @@ import financial.file.parser.tx.common.TXTransactionDTO;
 public class TXDBWriter implements IDBWriter<TXTransactionDTO> {
 
     private static final Logger LOG = Logger.getLogger(TXDBWriter.class);
-    
+
+    /**
+     * Method used to write customers and their transactions to the database.
+     * 
+     * @param transactionList
+     *            the list of transactions that resulted from reading the file
+     * 
+     */
     @Override
     public void writeToDB(List<TXTransactionDTO> transactionList) throws FinancialDBException {
-	
+
 	ICustomerDAO customerDAO = new CustomerDAO();
 	ITransactionDAO transactionDAO = new TransactionDAO();
-	
+
 	for (TXTransactionDTO txTransactionDTO : transactionList) {
-	    
-	    CustomerDO customerDO = new CustomerDO(txTransactionDTO.getCustomerNumber(), txTransactionDTO.getCustomerName());
-	    TransactionDO transactionDO = new TransactionDO(txTransactionDTO.getRecordType().getType(), txTransactionDTO.getProcessingDate(),
-		    txTransactionDTO.getTransactionType().getType(), txTransactionDTO.getTransactionAmount(), customerDO);
-	    
+
+	    CustomerDO customerDO = null;
+
 	    try {
-		customerDAO.create(customerDO);
+		customerDO = customerDAO.getCustomerByNumber(txTransactionDTO.getCustomerNumber());
+		if (customerDO == null) {
+		    customerDO = new CustomerDO(txTransactionDTO.getCustomerNumber(), txTransactionDTO.getCustomerName());
+		    customerDAO.create(customerDO);
+		}
 	    } catch (FinancialDBException e) {
 		LOG.error("Exception occured while trying to insert customer " + customerDO + " to the database.");
 		throw e;
 	    }
-	    
+
+	    TransactionDO transactionDO = null;
 	    try {
+		customerDO.setId(customerDAO.getCustomerId(customerDO.getCustomerNumber()));
+		transactionDO = new TransactionDO(txTransactionDTO.getRecordType().getType(), txTransactionDTO.getProcessingDate(),
+			txTransactionDTO.getTransactionType().getType(), txTransactionDTO.getTransactionAmount(), customerDO);
+		
 		transactionDAO.create(transactionDO);
 	    } catch (FinancialDBException e) {
-		LOG.error("Exception occured while trying to insert transaction " + transactionDO  + " to the database.");
+		LOG.error("Exception occured while trying to insert transaction " + transactionDO + " to the database.");
 		throw e;
 	    }
-	    
-	    
 	}
     }
-
 }

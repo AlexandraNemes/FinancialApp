@@ -51,13 +51,11 @@ public class FileHandlerTest {
     @Test
     public void testProcessFiles() throws FileReaderException, NoSuchAlgorithmException, IOException {
 
-	File testOutputFolder = new File(OUTPUT_TEST_FOLDER);
-
 	// copy the test file from the original folder to the test folder
 	copyBackUpFile();
 
 	// process the files
-	FILE_HANDLER.processFiles(new File(INPUT_TEST_FOLDER), testOutputFolder);
+	FILE_HANDLER.processFiles(new File(INPUT_TEST_FOLDER));
 
 	File testOutputFolderTX = new File(TX_OUTPUT_TEST_FOLDER);
 	File processedFiles = new File(testOutputFolderTX + "/ProcessedFiles");

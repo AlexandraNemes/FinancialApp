@@ -1,5 +1,11 @@
 package financial.data.entities;
 
+/**
+ * Class used to create customer objects that will be written to the database.
+ * 
+ * @author Alexandra Nemes
+ *
+ */
 public class CustomerDO {
 
     private Long id;
@@ -19,6 +25,10 @@ public class CustomerDO {
 
     public Long getId() {
 	return id;
+    }
+
+    public void setId(Long id) {
+	this.id = id;
     }
 
     public String getCustomerNumber() {

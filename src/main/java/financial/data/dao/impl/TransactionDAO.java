@@ -12,6 +12,12 @@ import financial.data.dao.ITransactionDAO;
 import financial.data.entities.TransactionDO;
 import financial.data.exception.FinancialDBException;
 
+/**
+ * Class used to create TransactionDAO objects.
+ * 
+ * @author Alexandra Nemes
+ *
+ */
 public class TransactionDAO implements ITransactionDAO {
 
     private static final Logger LOG = Logger.getLogger(TransactionDAO.class);
@@ -20,6 +26,11 @@ public class TransactionDAO implements ITransactionDAO {
 	    "INSERT INTO transactions (record_type, processing_date, transaction_type, transaction_amount, customer_id) ").append("VALUES (?, ?, ?, ?, ?)")
 		    .toString();
 
+    /**
+     * This method executes the query to insert a transaction to the database.
+     * 
+     * @param TransactionDO
+     */
     @Override
     public void create(TransactionDO transaction) throws FinancialDBException {
 	Connection connection = null;

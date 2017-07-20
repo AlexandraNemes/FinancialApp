@@ -16,8 +16,8 @@ import org.apache.log4j.Logger;
 
 import financial.file.parser.common.AbstractProcessorOutput;
 import financial.file.parser.common.exception.FileWriterException;
-import financial.file.parser.common.writer.impl.FinancialApplicationFileWriter;
 import financial.file.parser.common.writer.ISummaryFileWriter;
+import financial.file.parser.common.writer.impl.FinancialApplicationFileWriter;
 import financial.file.parser.tx.common.TXCustomerTransaction;
 import financial.file.parser.tx.common.TXFinalOutput;
 import financial.file.parser.tx.common.TXTransactionDTO;
@@ -31,7 +31,7 @@ import financial.file.parser.tx.common.TXValidationError;
  *
  */
 
-public class TXSummaryFileWriter implements ISummaryFileWriter {
+public class TXSummaryFileWriter implements ISummaryFileWriter<TXTransactionDTO> {
 
     private static final Logger LOG = Logger.getLogger(TXSummaryFileWriter.class);
 
@@ -49,8 +49,9 @@ public class TXSummaryFileWriter implements ISummaryFileWriter {
      * @return a String List representing the content to be written
      * @see TXFinalOutput
      */
-    public List<String> write(AbstractProcessorOutput output, File outputFile) {
-
+    @Override
+    public List<String> write(AbstractProcessorOutput<TXTransactionDTO> output, File outputFile) {
+	
 	final TXFinalOutput txFinalOutput = (TXFinalOutput) output;
 
 	if (LOG.isInfoEnabled()) {
@@ -139,6 +140,7 @@ public class TXSummaryFileWriter implements ISummaryFileWriter {
 	} catch (FileWriterException e) {
 
 	}
+	
 	return fileContent;
     }
 }
