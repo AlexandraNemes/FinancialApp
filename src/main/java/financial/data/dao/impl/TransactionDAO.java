@@ -75,7 +75,5 @@ public class TransactionDAO implements ITransactionDAO {
 		LOG.error("Could not close the connection.");
 	    }
 	}
-
     }
-
 }

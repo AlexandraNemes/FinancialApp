@@ -71,6 +71,7 @@ public class MainHandler {
 		break;
 	    case START:
 		fileHandler.processFiles(userInputFolder);
+		break;
 	    case EXIT:
 		done = true;
 		break;

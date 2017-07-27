@@ -34,7 +34,4 @@ public enum ProcessorsEnum {
     public Map<String, Class<? extends IWriter<ITransactionDTO>>> getProcessorWritersClasses() {
 	return writers;
     }
-    
-
-
 }

@@ -1,6 +1,8 @@
 package financial.file.parser.tx.writer;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -34,11 +36,11 @@ public class TXDBWriter implements IDBWriter<TXTransactionDTO> {
     @Override
     public void writeToDB(List<TXTransactionDTO> transactionList) throws FinancialDBException {
 
+	Set<TXTransactionDTO> transasctionSet = new HashSet<TXTransactionDTO>(transactionList);
 	ICustomerDAO customerDAO = new CustomerDAO();
 	ITransactionDAO transactionDAO = new TransactionDAO();
 
-	for (TXTransactionDTO txTransactionDTO : transactionList) {
-
+	for (TXTransactionDTO txTransactionDTO : transasctionSet) {
 	    CustomerDO customerDO = null;
 
 	    try {
@@ -54,7 +56,7 @@ public class TXDBWriter implements IDBWriter<TXTransactionDTO> {
 
 	    TransactionDO transactionDO = null;
 	    try {
-		customerDO.setId(customerDAO.getCustomerId(customerDO.getCustomerNumber()));
+		customerDO.setId(customerDAO.getCustomerByNumber(txTransactionDTO.getCustomerNumber()).getId());
 		transactionDO = new TransactionDO(txTransactionDTO.getRecordType().getType(), txTransactionDTO.getProcessingDate(),
 			txTransactionDTO.getTransactionType().getType(), txTransactionDTO.getTransactionAmount(), customerDO);
 		

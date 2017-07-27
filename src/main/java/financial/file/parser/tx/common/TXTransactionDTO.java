@@ -73,5 +73,4 @@ public class TXTransactionDTO implements ITransactionDTO {
     public void setTransactionAmount(BigDecimal transactionAmount) {
 	this.transactionAmount = transactionAmount;
     }
-
 }

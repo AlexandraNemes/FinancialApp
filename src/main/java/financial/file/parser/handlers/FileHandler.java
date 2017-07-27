@@ -113,6 +113,24 @@ public class FileHandler {
 				List<FileLine> fileLineList = reader.read(file);
 				AbstractProcessorOutput<ITransactionDTO> finalOutput = fileProcessorInstance.process(fileLineList);
 
+				// this folder will contain the result files
+				String baseOutputFolderPath = new StringBuilder
+					(outputFolder.getPath()).append(File.separator)
+					.append(folderName).append(File.separator)
+					.append("ProcessedFiles").append(File.separator).toString();
+				
+				// this folder will contain the original files,
+				// moved from the input folder
+				String originalFilesPath = new StringBuilder
+					(baseOutputFolderPath).append(File.separator)
+					.append("OriginalFiles").toString();
+				
+				File baseOutputFolder = new File(baseOutputFolderPath);
+				File originalFiles = new File(originalFilesPath);
+				
+				baseOutputFolder.mkdirs();
+				originalFiles.mkdirs();
+
 				if (LOG.isInfoEnabled()) {
 				    LOG.info("Available writers: ");
 				}
@@ -120,69 +138,70 @@ public class FileHandler {
 				for (String command : writersMap.keySet()) {
 				    Class<? extends IWriter<ITransactionDTO>> writerClass = writersMap.get(command);
 				    if (LOG.isInfoEnabled()) {
-					LOG.info("type " + command + " to use class " + writerClass.getSimpleName());
+					LOG.info("type " + "'" + command + "'" + " to use class " + writerClass.getSimpleName());
 				    }
 				}
 
-				String message = SCANNER.nextLine();
+				boolean done = false;
+				while (!done) {
+				    String message = SCANNER.nextLine();
 
-				Class<? extends IWriter<ITransactionDTO>> writerClassToUse = writersMap.get(message);
+				    Class<? extends IWriter<ITransactionDTO>> writerClassToUse = writersMap.get(message);
 
-				if (writerClassToUse != null) {
-				    
-				    try {
-					writer = writerClassToUse.newInstance();
-				    } catch (InstantiationException | IllegalAccessException e) {
-					LOG.error("Error occured " + e.getMessage());
-				    }
-				    
-				    if (writer instanceof ISummaryFileWriter) {
-					// create the output folder structure for
-					// the result and the original files
-					String outputFolderPath = outputFolder.getPath();
-					String folderNamePath = outputFolderPath + File.separator + folderName + File.separator;
-					String processedFilesFolderPath = folderNamePath + "ProcessedFiles" + File.separator;
-					String originalFilesFolderPath = processedFilesFolderPath + "OriginalFiles" + File.separator;
+				    if (writerClassToUse != null) {
+					done = true;
 					
-					File crntOutputFolder = new File(originalFilesFolderPath);
-					crntOutputFolder.mkdirs();
+					try {
+					    writer = writerClassToUse.newInstance();
+					} catch (InstantiationException | IllegalAccessException e) {
+					    LOG.error("Error occured " + e.getMessage());
+					}
 					
 					String outputFileName = DATE_FORMAT.format(new Date()) + file.getName();
 					
-					moveFile(file, crntOutputFolder, outputFileName);
+					moveFile(file, originalFiles, outputFileName);
 					if (LOG.isDebugEnabled()) {
-					    LOG.debug("Moved file: " + file.getName() + " (renamed as " + outputFileName + ") to folder: " + crntOutputFolder);
+					    LOG.debug("Moved file: " + file.getName() + " (renamed as " + outputFileName + ") to folder: " + originalFiles);
 					}
-					
-					File outputFile = new File(processedFilesFolderPath + outputFileName);
-					
-					((ISummaryFileWriter<ITransactionDTO>) writer).write(finalOutput, outputFile);
-				    }
-				    
-				    if (writer instanceof IDBWriter) {
-					try {
-					    List<ITransactionDTO> transactionList = finalOutput.getTransactionList();
-					    ((IDBWriter<ITransactionDTO>) writer).writeToDB(transactionList);
-					} catch (FinancialDBException e) {
-					    LOG.error("Could not write to database. Error: " + e.getErrorMessage());
+
+					// write to file
+					if (writer instanceof ISummaryFileWriter) {
+					    File outputFile = new File(baseOutputFolderPath + outputFileName);
+					    ((ISummaryFileWriter<ITransactionDTO>) writer).write(finalOutput, outputFile);
 					}
-					
-				    }
-				} else {
-				    if (LOG.isInfoEnabled()) {
-					LOG.info("No writer can be created with the command: " + message);
-					LOG.info("Enter command or type 'exit' to exit.");
+
+					// write to database
+					if (writer instanceof IDBWriter) {
+					    try {
+						List<ITransactionDTO> transactionList = finalOutput.getTransactionList();
+						((IDBWriter<ITransactionDTO>) writer).writeToDB(transactionList);
+					    } catch (FinancialDBException e) {
+						LOG.error("Could not write to database. Error: " + e.getErrorMessage());
+					    }
+					}
+				    } else {
+					if (message != null && !message.trim().isEmpty() && message.trim().equalsIgnoreCase("exit")) {
+					    done = true;
+					    break;
+					}
+					if (LOG.isInfoEnabled()) {
+					    LOG.info("No writer can be created with the command: " + message);
+					    LOG.info("Enter command or type 'exit' to exit.");
+					}
 				    }
 				}
 			    } catch (FileReaderException e) {
 				LOG.error("The file " + file.getName() + " can not be read because " + e.getErrorMessage());
-				}
+			    }
 
 			} else {
 			    if (LOG.isInfoEnabled()) {
 				LOG.info("The folder " + folder.getName() + " does not contain any files.");
 			    }
 			}
+		    }
+		    if (LOG.isInfoEnabled()) {
+			LOG.info("Finished with the folder: " + folder.getName());
 		    }
 		} else {
 		    if (LOG.isInfoEnabled()) {
@@ -195,7 +214,6 @@ public class FileHandler {
 		}
 	    }
 	}
-
     }
 
     /**
@@ -237,5 +255,4 @@ public class FileHandler {
 	    }
 	}
     }
-
 }

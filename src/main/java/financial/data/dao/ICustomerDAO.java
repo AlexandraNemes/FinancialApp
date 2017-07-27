@@ -13,6 +13,5 @@ public interface ICustomerDAO {
 
     public void create(CustomerDO customer) throws FinancialDBException;
     public CustomerDO getCustomerByNumber(String customerNumber) throws FinancialDBException;
-    public Long getCustomerId(String customerNumber) throws FinancialDBException;
-
+    
 }

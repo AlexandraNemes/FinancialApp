@@ -118,6 +118,5 @@ public class FileProcessorsFactory {
 	writersMap = PROCESSORS_MAP.get(folderName).getWritersList();
 
 	return writersMap;
-
     }
 }

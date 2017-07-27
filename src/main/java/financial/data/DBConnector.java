@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import financial.data.exception.FinancialDBException;
 
 /**
- * Class used to create connection to the database.
+ * Class used to create a connection to the database.
  * 
  * @author Alexandra Nemes
  *
