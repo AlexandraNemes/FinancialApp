@@ -1,8 +1,9 @@
 package financial.file.parser.tx.writer;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -35,35 +36,57 @@ public class TXDBWriter implements IDBWriter<TXTransactionDTO> {
      */
     @Override
     public void writeToDB(List<TXTransactionDTO> transactionList) throws FinancialDBException {
+	
+	Map<CustomerDO, List <TransactionDO>> transactionMap = new HashMap<CustomerDO, List<TransactionDO>>();
+	
+	for (TXTransactionDTO txTransactionDTO : transactionList) {
+	    
+	    CustomerDO customer = new CustomerDO(txTransactionDTO.getCustomerNumber(), txTransactionDTO.getCustomerName());
+	    TransactionDO transaction = new TransactionDO(txTransactionDTO.getRecordType().getType(), txTransactionDTO.getProcessingDate(),
+		    txTransactionDTO.getTransactionType().getType(), txTransactionDTO.getTransactionAmount(), customer);
 
-	Set<TXTransactionDTO> transasctionSet = new HashSet<TXTransactionDTO>(transactionList);
+	    if(transactionMap.containsKey(customer)) {
+		List<TransactionDO> transactionDOList = transactionMap.get(customer);
+		transactionDOList.add(transaction);
+	    } else {
+		List<TransactionDO> transactionDOList = new ArrayList<TransactionDO>();
+		transactionDOList.add(transaction);
+		transactionMap.put(customer, transactionDOList);
+	    }
+	}
+	
+	for (CustomerDO parentCustomerDO : transactionMap.keySet()) {
+	    for (TransactionDO transactionDO : transactionMap.get(parentCustomerDO)) {
+		transactionDO.setCustomer(parentCustomerDO);
+	    }
+	}
+
 	ICustomerDAO customerDAO = new CustomerDAO();
 	ITransactionDAO transactionDAO = new TransactionDAO();
 
-	for (TXTransactionDTO txTransactionDTO : transasctionSet) {
-	    CustomerDO customerDO = null;
+
+	for (CustomerDO customerDO : transactionMap.keySet()) {
 
 	    try {
-		customerDO = customerDAO.getCustomerByNumber(txTransactionDTO.getCustomerNumber());
-		if (customerDO == null) {
-		    customerDO = new CustomerDO(txTransactionDTO.getCustomerNumber(), txTransactionDTO.getCustomerName());
+		CustomerDO dbCustomer = customerDAO.getCustomerByNumber(customerDO.getCustomerNumber());
+		if (dbCustomer == null) {
 		    customerDAO.create(customerDO);
+		} else {
+		    customerDO.setId(dbCustomer.getId());
 		}
 	    } catch (FinancialDBException e) {
 		LOG.error("Exception occured while trying to insert customer " + customerDO + " to the database.");
 		throw e;
 	    }
 
-	    TransactionDO transactionDO = null;
-	    try {
-		customerDO.setId(customerDAO.getCustomerByNumber(txTransactionDTO.getCustomerNumber()).getId());
-		transactionDO = new TransactionDO(txTransactionDTO.getRecordType().getType(), txTransactionDTO.getProcessingDate(),
-			txTransactionDTO.getTransactionType().getType(), txTransactionDTO.getTransactionAmount(), customerDO);
-		
-		transactionDAO.create(transactionDO);
-	    } catch (FinancialDBException e) {
-		LOG.error("Exception occured while trying to insert transaction " + transactionDO + " to the database.");
-		throw e;
+	    List<TransactionDO> transactionDOList = transactionMap.get(customerDO);
+	    for (TransactionDO transactionDO : transactionDOList) {
+		try {
+		    transactionDAO.create(transactionDO);
+		} catch (FinancialDBException e) {
+		    LOG.error("Exception occured while trying to insert transaction " + transactionDO + " to the database.");
+		    throw e;
+		}
 	    }
 	}
     }

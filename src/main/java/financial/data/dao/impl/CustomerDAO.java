@@ -54,6 +54,8 @@ public class CustomerDAO implements ICustomerDAO {
 	    if (LOG.isDebugEnabled()) {
 		LOG.debug("Inserted customer " + customer);
 	    }
+	    
+	    customer.setId(this.getCustomerByNumber(customer.getCustomerNumber()).getId());
 
 	} catch (SQLException | FinancialDBException e) {
 	    LOG.error("Exception occured.", e);

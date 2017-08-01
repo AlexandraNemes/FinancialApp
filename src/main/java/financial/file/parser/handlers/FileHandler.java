@@ -113,81 +113,87 @@ public class FileHandler {
 				List<FileLine> fileLineList = reader.read(file);
 				AbstractProcessorOutput<ITransactionDTO> finalOutput = fileProcessorInstance.process(fileLineList);
 
-				// this folder will contain the result files
-				String baseOutputFolderPath = new StringBuilder
-					(outputFolder.getPath()).append(File.separator)
-					.append(folderName).append(File.separator)
-					.append("ProcessedFiles").append(File.separator).toString();
-				
-				// this folder will contain the original files,
-				// moved from the input folder
-				String originalFilesPath = new StringBuilder
-					(baseOutputFolderPath).append(File.separator)
-					.append("OriginalFiles").toString();
-				
-				File baseOutputFolder = new File(baseOutputFolderPath);
-				File originalFiles = new File(originalFilesPath);
-				
-				baseOutputFolder.mkdirs();
-				originalFiles.mkdirs();
-
-				if (LOG.isInfoEnabled()) {
-				    LOG.info("Available writers: ");
-				}
-
-				for (String command : writersMap.keySet()) {
-				    Class<? extends IWriter<ITransactionDTO>> writerClass = writersMap.get(command);
+				if (finalOutput != null) {
+				    // this folder will contain the result files
+				    String baseOutputFolderPath = new StringBuilder
+					    (outputFolder.getPath()).append(File.separator)
+					    .append(folderName).append(File.separator)
+					    .append("ProcessedFiles").append(File.separator).toString();
+				    
+				    // this folder will contain the original files,
+				    // moved from the input folder
+				    String originalFilesPath = new StringBuilder
+					    (baseOutputFolderPath).append(File.separator)
+					    .append("OriginalFiles").toString();
+				    
+				    File baseOutputFolder = new File(baseOutputFolderPath);
+				    File originalFiles = new File(originalFilesPath);
+				    
+				    baseOutputFolder.mkdirs();
+				    originalFiles.mkdirs();
+				    
 				    if (LOG.isInfoEnabled()) {
-					LOG.info("type " + "'" + command + "'" + " to use class " + writerClass.getSimpleName());
+					LOG.info("Available writers: ");
 				    }
-				}
-
-				boolean done = false;
-				while (!done) {
-				    String message = SCANNER.nextLine();
-
-				    Class<? extends IWriter<ITransactionDTO>> writerClassToUse = writersMap.get(message);
-
-				    if (writerClassToUse != null) {
-					done = true;
-					
-					try {
-					    writer = writerClassToUse.newInstance();
-					} catch (InstantiationException | IllegalAccessException e) {
-					    LOG.error("Error occured " + e.getMessage());
+				    
+				    for (String command : writersMap.keySet()) {
+					Class<? extends IWriter<ITransactionDTO>> writerClass = writersMap.get(command);
+					if (LOG.isInfoEnabled()) {
+					    LOG.info("type " + "'" + command + "'" + " to use class " + writerClass.getSimpleName());
 					}
+				    }
+				    
+				    boolean done = false;
+				    while (!done) {
+					String message = SCANNER.nextLine();
 					
-					String outputFileName = DATE_FORMAT.format(new Date()) + file.getName();
+					Class<? extends IWriter<ITransactionDTO>> writerClassToUse = writersMap.get(message);
 					
-					moveFile(file, originalFiles, outputFileName);
-					if (LOG.isDebugEnabled()) {
-					    LOG.debug("Moved file: " + file.getName() + " (renamed as " + outputFileName + ") to folder: " + originalFiles);
-					}
-
-					// write to file
-					if (writer instanceof ISummaryFileWriter) {
-					    File outputFile = new File(baseOutputFolderPath + outputFileName);
-					    ((ISummaryFileWriter<ITransactionDTO>) writer).write(finalOutput, outputFile);
-					}
-
-					// write to database
-					if (writer instanceof IDBWriter) {
+					if (writerClassToUse != null) {
+					    done = true;
+					    
 					    try {
-						List<ITransactionDTO> transactionList = finalOutput.getTransactionList();
-						((IDBWriter<ITransactionDTO>) writer).writeToDB(transactionList);
-					    } catch (FinancialDBException e) {
-						LOG.error("Could not write to database. Error: " + e.getErrorMessage());
+						writer = writerClassToUse.newInstance();
+					    } catch (InstantiationException | IllegalAccessException e) {
+						LOG.error("Error occured " + e.getMessage());
+					    }
+					    
+					    String outputFileName = DATE_FORMAT.format(new Date()) + file.getName();
+					    
+					    moveFile(file, originalFiles, outputFileName);
+					    if (LOG.isDebugEnabled()) {
+						LOG.debug("Moved file: " + file.getName() + " (renamed as " + outputFileName + ") to folder: " + originalFiles);
+					    }
+					    
+					    // write to file
+					    if (writer instanceof ISummaryFileWriter) {
+						File outputFile = new File(baseOutputFolderPath + outputFileName);
+						((ISummaryFileWriter<ITransactionDTO>) writer).write(finalOutput, outputFile);
+					    }
+					    
+					    // write to database
+					    if (writer instanceof IDBWriter) {
+						try {
+						    List<ITransactionDTO> transactionList = finalOutput.getTransactionList();
+						    ((IDBWriter<ITransactionDTO>) writer).writeToDB(transactionList);
+						} catch (FinancialDBException e) {
+						    LOG.error("Could not write to database. Error: " + e.getErrorMessage());
+						}
+					    }
+					} else {
+					    if (message != null && !message.trim().isEmpty() && message.trim().equalsIgnoreCase("exit")) {
+						done = true;
+						break;
+					    }
+					    if (LOG.isInfoEnabled()) {
+						LOG.info("No writer can be created with the command: " + message);
+						LOG.info("Enter command or type 'exit' to exit.");
 					    }
 					}
-				    } else {
-					if (message != null && !message.trim().isEmpty() && message.trim().equalsIgnoreCase("exit")) {
-					    done = true;
-					    break;
-					}
-					if (LOG.isInfoEnabled()) {
-					    LOG.info("No writer can be created with the command: " + message);
-					    LOG.info("Enter command or type 'exit' to exit.");
-					}
+				    }
+				} else {
+				    if (LOG.isInfoEnabled()) {
+					LOG.info("The file " + file.getName() + " is not processable.");
 				    }
 				}
 			    } catch (FileReaderException e) {

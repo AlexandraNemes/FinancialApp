@@ -49,7 +49,6 @@ public class MainHandler {
 	    LOG.info("- To start the processing type 'start'.");
 	    LOG.info("- To close the application type 'exit'.");
 
-	    LOG.info("Enter command:");
 	}
 
 	boolean done = false;
@@ -59,6 +58,9 @@ public class MainHandler {
 	File userInputFolder = inputFolder;
 
 	while (!done) {
+	    if (LOG.isInfoEnabled()) {
+		LOG.info("Enter command:");
+	    }
 	    String message = SCANNER.nextLine();
 	    PossibleCommandsEnum command = PossibleCommandsEnum.convert(message);
 
@@ -77,7 +79,7 @@ public class MainHandler {
 		break;
 	    default:
 		if (LOG.isInfoEnabled()) {
-		    LOG.info("The command does not exist.");
+		    LOG.info("The command does not exist. Enter command or type 'exit'.");
 		}
 		break;
 	    }

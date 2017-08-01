@@ -52,4 +52,30 @@ public class CustomerDO {
 	return builder.toString();
     }
 
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((customerNumber == null) ? 0 : customerNumber.hashCode());
+	return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	CustomerDO other = (CustomerDO) obj;
+	if (customerNumber == null) {
+	    if (other.customerNumber != null)
+		return false;
+	} else if (!customerNumber.equals(other.customerNumber))
+	    return false;
+	return true;
+    }
+
+    
 }

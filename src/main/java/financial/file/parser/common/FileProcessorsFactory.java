@@ -84,23 +84,26 @@ public class FileProcessorsFactory {
 	// check if the input folder name matches one of the values
 	// from our Map. If it does, search for a constructor without parameters
 	// in that class and create an instance of it.
-	Class<? extends IFileProcessor<?>> clazz = PROCESSORS_MAP.get(folderName).getProcessorType();
-	if (clazz != null) {
-	    Constructor<?> foundConstructor = null;
-	    for (Constructor<?> constructor : clazz.getConstructors()) {
-		if (constructor.getParameterCount() == 0) {
-		    foundConstructor = constructor;
+	ProcessorDetails processor = PROCESSORS_MAP.get(folderName);
+	if (processor != null) {
+	    Class<? extends IFileProcessor<?>> clazz = processor.getProcessorType();
+	    if (clazz != null) {
+		Constructor<?> foundConstructor = null;
+		for (Constructor<?> constructor : clazz.getConstructors()) {
+		    if (constructor.getParameterCount() == 0) {
+			foundConstructor = constructor;
+		    }
 		}
-	    }
-
-	    if (foundConstructor != null) {
-		try {
-		    instance = (IFileProcessor<ITransactionDTO>) foundConstructor.newInstance();
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-		    LOG.error("Exception occured.", e);
+		
+		if (foundConstructor != null) {
+		    try {
+			instance = (IFileProcessor<ITransactionDTO>) foundConstructor.newInstance();
+		    } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			LOG.error("Exception occured.", e);
+		    }
+		} else {
+		    LOG.error("Can not create instance of " + clazz.getName() + " because it has no constructor without parameters.");
 		}
-	    } else {
-		LOG.error("Can not create instance of " + clazz.getName() + " because it has no constructor without parameters.");
 	    }
 	}
 	return instance;

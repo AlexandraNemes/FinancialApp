@@ -69,6 +69,10 @@ public class TransactionDO {
     public CustomerDO getCustomer() {
 	return customer;
     }
+    
+    public void setCustomer(CustomerDO customer) {
+	this.customer = customer;
+    }
 
     @Override
     public String toString() {
