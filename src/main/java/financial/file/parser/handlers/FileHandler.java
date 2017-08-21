@@ -44,9 +44,8 @@ public class FileHandler {
     private IWriter<ITransactionDTO> writer = null;
 
     /**
-     * Takes a command from the user, a path to create an input or output
-     * folder. If the path can be used to create the folder, the method returns
-     * that folder.
+     * Takes a command from the user, a path to create an input folder. If the
+     * path can be used to create the folder, the method returns that folder.
      * 
      * @param message
      *            the command from the user
@@ -95,6 +94,7 @@ public class FileHandler {
 		IFileProcessor<ITransactionDTO> fileProcessorInstance = FileProcessorsFactory.getInstance().getFileProcessor(folderName);
 
 		if (fileProcessorInstance != null) {
+		    // get the writers available for the processor
 		    Map<String, Class<? extends IWriter<ITransactionDTO>>> writersMap = FileProcessorsFactory.getInstance().getWriters(folderName);
 
 		    if (LOG.isDebugEnabled()) {
@@ -110,6 +110,7 @@ public class FileHandler {
 			    }
 
 			    try {
+				// read and process the file
 				List<FileLine> fileLineList = reader.read(file);
 				AbstractProcessorOutput<ITransactionDTO> finalOutput = fileProcessorInstance.process(fileLineList);
 
@@ -132,6 +133,7 @@ public class FileHandler {
 				    baseOutputFolder.mkdirs();
 				    originalFiles.mkdirs();
 				    
+				    // show available writers for the user to choose
 				    if (LOG.isInfoEnabled()) {
 					LOG.info("Available writers: ");
 				    }

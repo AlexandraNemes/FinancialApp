@@ -92,5 +92,4 @@ public class TransactionDO {
 	builder.append("]");
 	return builder.toString();
     }
-
 }

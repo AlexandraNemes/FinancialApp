@@ -6,7 +6,7 @@ import java.util.Date;
 import financial.file.parser.common.ITransactionDTO;
 
 /**
- * Class used to define transactions, with all their characteristics.
+ * Class used to define TX transactions, with all their characteristics.
  * 
  * @author Alexandra Nemes
  *

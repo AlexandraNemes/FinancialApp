@@ -55,6 +55,9 @@ public class CustomerDAO implements ICustomerDAO {
 		LOG.debug("Inserted customer " + customer);
 	    }
 	    
+	    // after inserted a customer, get its id from the database and set
+	    // that customer id in order to be able to create transactions that
+	    // contain customers with all their details
 	    customer.setId(this.getCustomerByNumber(customer.getCustomerNumber()).getId());
 
 	} catch (SQLException | FinancialDBException e) {
@@ -72,7 +75,6 @@ public class CustomerDAO implements ICustomerDAO {
 		LOG.error("Could not close the connection.");
 	    }
 	}
-
     }
 
     /**
@@ -100,6 +102,7 @@ public class CustomerDAO implements ICustomerDAO {
 	    }
 
 	    preparedStatement.setString(1, customerNumber);
+	    
 	    ResultSet resultSet = preparedStatement.executeQuery();
 	    if (resultSet.next()) {
 		customerDO = new CustomerDO(resultSet.getLong("id"), resultSet.getString("customer_number"), resultSet.getString("customer_name"));

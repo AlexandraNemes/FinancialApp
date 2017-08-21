@@ -66,6 +66,7 @@ public class MainHandler {
 
 	    switch (command) {
 	    case INPUT:
+		// expect the user to choose an input folder
 		File output = fileHandler.readUserFolder("Enter the input folder or type 'exit':");
 		if (output != null) {
 		    userInputFolder = output;

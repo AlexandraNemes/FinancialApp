@@ -10,7 +10,8 @@ import financial.file.parser.tx.writer.TXDBWriter;
 import financial.file.parser.tx.writer.TXSummaryFileWriter;
 
 /**
- * Enum that contains the possible processors to be used.
+ * Enum that contains the possible processors to be used
+ * and also the writers available for each processor.
  * 
  * @author Alexandra Nemes
  *

@@ -75,7 +75,5 @@ public class CustomerDO {
 	} else if (!customerNumber.equals(other.customerNumber))
 	    return false;
 	return true;
-    }
-
-    
+    } 
 }

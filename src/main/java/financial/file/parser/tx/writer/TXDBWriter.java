@@ -37,6 +37,7 @@ public class TXDBWriter implements IDBWriter<TXTransactionDTO> {
     @Override
     public void writeToDB(List<TXTransactionDTO> transactionList) throws FinancialDBException {
 	
+	// map used to group transactions by customer
 	Map<CustomerDO, List <TransactionDO>> transactionMap = new HashMap<CustomerDO, List<TransactionDO>>();
 	
 	for (TXTransactionDTO txTransactionDTO : transactionList) {
@@ -55,6 +56,7 @@ public class TXDBWriter implements IDBWriter<TXTransactionDTO> {
 	    }
 	}
 	
+	// set the right customer for each transaction in the map
 	for (CustomerDO parentCustomerDO : transactionMap.keySet()) {
 	    for (TransactionDO transactionDO : transactionMap.get(parentCustomerDO)) {
 		transactionDO.setCustomer(parentCustomerDO);
@@ -64,9 +66,7 @@ public class TXDBWriter implements IDBWriter<TXTransactionDTO> {
 	ICustomerDAO customerDAO = new CustomerDAO();
 	ITransactionDAO transactionDAO = new TransactionDAO();
 
-
 	for (CustomerDO customerDO : transactionMap.keySet()) {
-
 	    try {
 		CustomerDO dbCustomer = customerDAO.getCustomerByNumber(customerDO.getCustomerNumber());
 		if (dbCustomer == null) {

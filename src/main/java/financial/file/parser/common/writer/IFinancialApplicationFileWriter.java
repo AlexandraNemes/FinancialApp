@@ -14,5 +14,4 @@ import financial.file.parser.common.exception.FileWriterException;
 public interface IFinancialApplicationFileWriter {
 
     public void writeToFile(List<String> fileContent, File file) throws FileWriterException;
-
 }
