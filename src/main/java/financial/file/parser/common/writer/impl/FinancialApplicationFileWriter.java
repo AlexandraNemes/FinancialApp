@@ -1,4 +1,4 @@
-package financial.file.parser.common.writer;
+package financial.file.parser.common.writer.impl;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import financial.file.parser.common.exception.FileWriterException;
+import financial.file.parser.common.writer.IFinancialApplicationFileWriter;
 
 /**
  * Class used to write data to a file.
@@ -16,20 +17,19 @@ import financial.file.parser.common.exception.FileWriterException;
  * @author Alexandra Nemes
  *
  */
-public class FinancialApplicationWriter {
+public class FinancialApplicationFileWriter implements IFinancialApplicationFileWriter {
 
-    private static final Logger LOG = Logger.getLogger(FinancialApplicationWriter.class);
+    private static final Logger LOG = Logger.getLogger(FinancialApplicationFileWriter.class);
 
     /**
      * Writes data from a List of Strings to a given file.
-     * 
      * 
      * @param fileContent
      *            the content to write
      * @param file
      *            the file to write to
      */
-    public void write(List<String> fileContent, File file) throws FileWriterException {
+    public void writeToFile(List<String> fileContent, File file) throws FileWriterException {
 
 	if (file != null && fileContent != null) {
 	    if (!file.isDirectory() && !file.getPath().endsWith(File.separator)) {

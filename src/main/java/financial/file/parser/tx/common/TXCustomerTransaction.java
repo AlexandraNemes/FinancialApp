@@ -13,27 +13,24 @@ import java.util.Map;
  *
  */
 public class TXCustomerTransaction {
-    
+
     private int totalTrxCount;
     private int totalCreditTrxCount;
     private int totalDebitTrxCount;
     private BigDecimal totalTrxAmount = BigDecimal.ZERO;
     private BigDecimal totalCreditTrxAmount = BigDecimal.ZERO;
     private BigDecimal totalDebitTrxAmount = BigDecimal.ZERO;
-    
-    
-    public TXCustomerTransaction(TXTransaction transaction) {
+
+    public TXCustomerTransaction(TXTransactionDTO transaction) {
 	super();
 	this.addTransaction(transaction);
     }
- 
-    
+
     // Map used to group transactions by their type
-    private Map<TXTransactionTypeEnum, BigDecimal> transactionTypeMap = new HashMap<TXTransactionTypeEnum, BigDecimal>(); 
-    
-    private List<TXTransaction> transactionList = new ArrayList<TXTransaction>();
-    
-    
+    private Map<TXTransactionTypeEnum, BigDecimal> transactionTypeMap = new HashMap<TXTransactionTypeEnum, BigDecimal>();
+
+    private List<TXTransactionDTO> transactionList = new ArrayList<TXTransactionDTO>();
+
     /**
      * Adds transactions to the Transaction List. It also calculates the count
      * and the amount of the transactions and groups them by type.
@@ -41,7 +38,7 @@ public class TXCustomerTransaction {
      * @param transaction
      *            the Transaction object to be processed
      */
-    public void addTransaction(TXTransaction transaction) {
+    public void addTransaction(TXTransactionDTO transaction) {
 
 	transactionList.add(transaction);
 
@@ -50,8 +47,7 @@ public class TXCustomerTransaction {
 	totalTrxCount++;
 	totalTrxAmount = totalTrxAmount.add(transaction.getTransactionAmount());
 
-	// calculate credit or debit amount and count depending on the Record
-	// Type
+	// calculate credit or debit amount and count depending on the Record Type
 	if (transaction.getRecordType() == TXRecordTypeEnum.CREDIT_TRANSACTION) {
 	    totalCreditTrxCount++;
 	    totalCreditTrxAmount = totalCreditTrxAmount.add(transaction.getTransactionAmount());
@@ -71,47 +67,42 @@ public class TXCustomerTransaction {
 	}
     }
 
-    public List<TXTransaction> getTransactionList() {
-        return transactionList;
+    public List<TXTransactionDTO> getTransactionList() {
+	return transactionList;
     }
 
     public Map<TXTransactionTypeEnum, BigDecimal> getTransactionTypeMap() {
-        return transactionTypeMap;
+	return transactionTypeMap;
     }
 
     public int getTotalTrxCount() {
-        return totalTrxCount;
+	return totalTrxCount;
     }
 
     public int getTotalCreditTrxCount() {
-        return totalCreditTrxCount;
+	return totalCreditTrxCount;
     }
 
     public int getTotalDebitTrxCount() {
-        return totalDebitTrxCount;
+	return totalDebitTrxCount;
     }
 
     public BigDecimal getTotalTrxAmount() {
-        return totalTrxAmount;
+	return totalTrxAmount;
     }
 
     public BigDecimal getTotalCreditTrxAmount() {
-        return totalCreditTrxAmount;
+	return totalCreditTrxAmount;
     }
 
     public BigDecimal getTotalDebitTrxAmount() {
-        return totalDebitTrxAmount;
+	return totalDebitTrxAmount;
     }
-
-
-
 
     public String toString() {
 	return ("Total transaction count: " + this.totalTrxCount + ", Total Debit transaction count: " + this.totalDebitTrxCount
 		+ ", Total Credit transaction type: " + this.totalCreditTrxCount + ", Total transaction Amount: " + this.totalTrxAmount
-		+ ", Total Debit transaction amount: " + this.totalDebitTrxAmount + ", Total Credit transaction amount: "
-		+ this.totalCreditTrxAmount + ".");
+		+ ", Total Debit transaction amount: " + this.totalDebitTrxAmount + ", Total Credit transaction amount: " + this.totalCreditTrxAmount + ".");
     }
 
 }
-

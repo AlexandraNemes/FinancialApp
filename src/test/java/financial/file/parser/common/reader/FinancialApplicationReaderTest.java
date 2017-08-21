@@ -16,22 +16,16 @@ import financial.file.parser.common.exception.FileReaderException;
 public class FinancialApplicationReaderTest {
 
     private static final FinancialApplicationReader READER = new FinancialApplicationReader();
-    
+
     @Test
     public void testFileReader() throws Exception {
 	File testFile = new File("src/test/resources/reader/TestFile.tx");
 	List<FileLine> actualFileLineList = READER.read(testFile);
-	FileLine[] fileLineArray =  {
-		new FileLine(1, "        11111111111   "),
-		new FileLine(2, "     232323224234234"),
-		new FileLine(3, "   afsdfsfdsdf   "),
-		new FileLine(4, ""),
-		new FileLine(5, " "),
-		new FileLine(6, "   ###8879hkvjhvjvkh")};
+	FileLine[] fileLineArray = { new FileLine(1, "        11111111111   "), new FileLine(2, "     232323224234234"), new FileLine(3, "   afsdfsfdsdf   "),
+		new FileLine(4, ""), new FileLine(5, " "), new FileLine(6, "   ###8879hkvjhvjvkh") };
 	validateFileLine(actualFileLineList, fileLineArray);
     }
-    
-    
+
     @Test
     public void testReaderInputNull() {
 	Exception e = null;
@@ -46,8 +40,7 @@ public class FinancialApplicationReaderTest {
 	assertNotNull(e);
 	assertEquals(message, errorMessage);
     }
-    
-    
+
     @Test
     public void testInputFileDoesNotExist() {
 	Exception e = null;
@@ -62,8 +55,7 @@ public class FinancialApplicationReaderTest {
 	assertNotNull(e);
 	assertEquals(message, errorMessage);
     }
-    
-    
+
     @Test
     public void testInputIsAFolder() {
 	Exception e = null;
@@ -78,11 +70,10 @@ public class FinancialApplicationReaderTest {
 	assertNotNull(e);
 	assertEquals(message, errorMessage);
     }
-    
-    
+
     private void validateFileLine(List<FileLine> fileLineList, FileLine[] fileLineArray) {
 	List<FileLine> expectedList = Arrays.asList(fileLineArray);
 	assertTrue(expectedList.equals(fileLineList));
-   }
-    
+    }
+
 }

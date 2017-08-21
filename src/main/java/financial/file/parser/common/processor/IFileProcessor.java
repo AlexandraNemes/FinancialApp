@@ -4,6 +4,7 @@ import java.util.List;
 
 import financial.file.parser.common.AbstractProcessorOutput;
 import financial.file.parser.common.FileLine;
+import financial.file.parser.common.ITransactionDTO;
 
 /**
  * Interface for defining a common behavior for the file parsers.
@@ -11,7 +12,8 @@ import financial.file.parser.common.FileLine;
  * @author Alexandra Nemes
  *
  */
-public interface IFileProcessor {
-
-    public AbstractProcessorOutput process(List<FileLine> fileLineList);
+public interface IFileProcessor<T extends ITransactionDTO> {
+    
+    public AbstractProcessorOutput<T> process(List<FileLine> fileLineList);
+   
 }

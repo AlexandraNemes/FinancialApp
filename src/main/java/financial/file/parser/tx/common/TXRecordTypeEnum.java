@@ -1,5 +1,7 @@
 package financial.file.parser.tx.common;
 
+import financial.data.entities.TransactionDO.RecordTypeEnum;
+
 /**
  * Enum containing the possible record types of the transactions.
  * 
@@ -7,20 +9,26 @@ package financial.file.parser.tx.common;
  *
  */
 public enum TXRecordTypeEnum {
-    
-    CREDIT_TRANSACTION ("0"),
-    DEBIT_TRANSACTION("1");
-    
+
+    CREDIT_TRANSACTION("0", RecordTypeEnum.CREDIT), 
+    DEBIT_TRANSACTION("1", RecordTypeEnum.DEBIT);
+
     private String recordType;
-    
-    private TXRecordTypeEnum (String recordType) {
+    private RecordTypeEnum type;
+
+    private TXRecordTypeEnum(String recordType, RecordTypeEnum type) {
 	this.recordType = recordType;
+	this.type = type;
     }
 
     public String getRecordType() {
-        return recordType;
+	return recordType;
     }
-    
+
+    public RecordTypeEnum getType() {
+        return type;
+    }
+
     /**
      * Checks for a match between a String it gets and the Enum values.
      * 

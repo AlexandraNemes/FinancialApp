@@ -3,13 +3,15 @@ package financial.file.parser.tx.common;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import financial.file.parser.common.ITransactionDTO;
+
 /**
- * Class used to define transactions, with all their characteristics.
+ * Class used to define TX transactions, with all their characteristics.
  * 
  * @author Alexandra Nemes
  *
  */
-public class TXTransaction {
+public class TXTransactionDTO implements ITransactionDTO {
 
     private TXRecordTypeEnum recordType;
     private String customerNumber;
@@ -71,5 +73,4 @@ public class TXTransaction {
     public void setTransactionAmount(BigDecimal transactionAmount) {
 	this.transactionAmount = transactionAmount;
     }
-
 }
