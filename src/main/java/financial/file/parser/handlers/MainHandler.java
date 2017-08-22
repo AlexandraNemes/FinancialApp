@@ -19,9 +19,11 @@ import financial.data.exception.FinancialDBException;
  */
 public class MainHandler {
 
+    public static File outputFolder = null;
+    
     public static final Properties PROPERTIES = new Properties();
     public static final Scanner SCANNER = new Scanner(System.in);
-    public static File outputFolder = null;
+    public static final FileHandler FILE_HANDLER = new FileHandler();
 
     private static final Logger LOG = Logger.getLogger(MainHandler.class);
 
@@ -34,7 +36,6 @@ public class MainHandler {
     private static String driver = null;
 
     public static void main(String[] args) throws FinancialDBException {
-	FileHandler fileHandler = new FileHandler();
 	readPropertiesFile();
 	createFolders();
 	initializeDBConnector();
@@ -67,13 +68,13 @@ public class MainHandler {
 	    switch (command) {
 	    case INPUT:
 		// expect the user to choose an input folder
-		File output = fileHandler.readUserFolder("Enter the input folder or type 'exit':");
+		File output = FILE_HANDLER.readUserFolder("Enter the input folder or type 'exit':");
 		if (output != null) {
 		    userInputFolder = output;
 		}
 		break;
 	    case START:
-		fileHandler.processFiles(userInputFolder);
+		FILE_HANDLER.processFiles(userInputFolder);
 		break;
 	    case EXIT:
 		done = true;
