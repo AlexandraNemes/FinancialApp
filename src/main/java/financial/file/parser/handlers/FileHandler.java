@@ -116,8 +116,7 @@ public class FileHandler {
 
 				if (finalOutput != null) {
 				    // this folder will contain the result files
-				    String baseOutputFolderPath = new StringBuilder
-					    (outputFolder.getPath()).append(File.separator)
+				    String baseOutputFolderPath = new StringBuilder(outputFolder.getPath()).append(File.separator)
 					    .append(folderName).append(File.separator)
 					    .append("ProcessedFiles").append(File.separator).toString();
 				    

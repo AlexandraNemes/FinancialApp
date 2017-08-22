@@ -21,8 +21,12 @@ public class FinancialApplicationReaderTest {
     public void testFileReader() throws Exception {
 	File testFile = new File("src/test/resources/reader/TestFile.tx");
 	List<FileLine> actualFileLineList = READER.read(testFile);
-	FileLine[] fileLineArray = { new FileLine(1, "        11111111111   "), new FileLine(2, "     232323224234234"), new FileLine(3, "   afsdfsfdsdf   "),
-		new FileLine(4, ""), new FileLine(5, " "), new FileLine(6, "   ###8879hkvjhvjvkh") };
+	FileLine[] fileLineArray = { new FileLine(1, "        11111111111   ")
+		, new FileLine(2, "     232323224234234")
+		, new FileLine(3, "   afsdfsfdsdf   ")
+		, new FileLine(4, "")
+		, new FileLine(5, " ")
+		, new FileLine(6, "   ###8879hkvjhvjvkh") };
 	validateFileLine(actualFileLineList, fileLineArray);
     }
 
